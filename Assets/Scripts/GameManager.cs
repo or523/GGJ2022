@@ -5,89 +5,6 @@ using UnityEngine;
 using System;
 using Unity.Netcode;
 
-public class Decision : INetworkSerializable
-{
-    public int          m_decision_id;
-    public Resources    m_resources_needed;
-    public Resources    m_resources_allocated;
-    public bool         m_is_selectable;            // is the decision available?
-
-    public bool         m_is_selected;              // is it currently selected?
-
-    public void Select(ResourceType type)
-    {
-        m_is_selected = true;
-
-        // update the global resource amount
-        ResourceManagerBehaviour.Instance.UpdateByType(
-            m_resources_needed,
-            type
-        );
-
-        // update the amount allocated for the decision
-        m_resources_allocated.UpdateByType(
-            m_resources_needed,
-            type
-        );
-    }
-
-    public void Unselect(ResourceType type)
-    {
-        m_is_selected = false;
-
-        // update the global resource amount
-        ResourceManagerBehaviour.Instance.UpdateByType(
-            -m_resources_needed,
-            type
-        );
-
-        // update the amount allocated for the decision
-        m_resources_allocated.UpdateByType(
-            -m_resources_needed,
-            type
-        );
-    }
-
-    public void UpdateSelectable()
-    {
-        m_is_selectable = ResourceManagerBehaviour.Instance.m_resources >= m_resources_needed;
-
-        // TODO - update visually
-    }
-
-    public void ApplyDecision()
-    {
-        if (m_resources_allocated >= m_resources_needed)
-        {
-            // resources were already updated in the global store
-            // just do the decision
-
-            // TODO - activate the decision
-        }
-        else
-        {
-            // not enough for the decision to take affect
-            // reimburse
-            ResourceManagerBehaviour.Instance.UpdateResources(m_resources_allocated);
-        }
-    }
-
-    public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
-    {
-        serializer.SerializeValue(ref m_decision_id);
-        m_resources_needed.NetworkSerialize(serializer);
-        m_resources_allocated.NetworkSerialize(serializer);
-        serializer.SerializeValue(ref m_is_selectable);
-        serializer.SerializeValue(ref m_is_selected);
-    }
-}
-
-[System.Serializable]
-public class WorldEvent
-{
-    
-}
-
 public enum GameState
 {
     WaitingForPlayers,
@@ -110,6 +27,7 @@ public class GameManager : MonoBehaviour
 
     // available events
     public WorldEvent[] m_events;
+    public WorldEvent   m_nop_event;    // event that does nothing, to pad to the number of game turns
 
     // current decisions
     public List<Decision> m_decisions;
@@ -124,18 +42,42 @@ public class GameManager : MonoBehaviour
 
     public const int NUM_PLAYERS = 4;
     
-    public int max_turns = 12;
+    public int max_turns;
+
+    public CalculationEvent m_modifier;
 
     void Awake()
     {
         Instance = this;
+        m_modifier = null;
         m_gameState = GameState.WaitingForPlayers;
+
+        m_players = new Dictionary<ulong, GameObject>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
         m_buildings = GameObject.FindObjectsOfType<BuildingBehaviour>();
+
+        int num_events_to_pad = max_turns - m_events.Length;
+        if (num_events_to_pad > 0)
+        {
+            // create padded array
+            WorldEvent[] concat = new WorldEvent[max_turns];
+
+            // add the padding events
+            for (int i = 0; i < num_events_to_pad; ++i)
+            {
+                concat[i] = m_nop_event;
+            }
+
+            // copy the original events in
+            m_events.CopyTo(concat, num_events_to_pad);
+
+            // replace the events list
+            m_events = concat;
+        }
 
         Shuffle(m_events);
     }
@@ -164,7 +106,7 @@ public class GameManager : MonoBehaviour
 
             case GameState.SelectDecisions:
                 // select the available decisions for this turn
-                m_decisions = SelectDecisions();
+                SelectDecisions();
                 m_gameState = GameState.PlayersMove;
                 break;
 
@@ -178,13 +120,16 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.WorldEvent:
+                // clear the previous modifier
+                m_modifier = null;
+
                 // do a random world event
-                WorldEvent();
+                DoWorldEvent();
 
                 // update the turn count
                 CountTurns();
 
-                // TODO: check if turns ran out
+                // check if turns ran out
                 if (max_turns == m_turn_counter)
                 {
                     m_gameState = GameState.GameEnd;
@@ -209,15 +154,20 @@ public class GameManager : MonoBehaviour
 
     public void Produce()
     {
+        Resources production = new Resources();
         foreach (BuildingBehaviour building in m_buildings)
         {
-            building.Produce();
+            production = building.Produce();
         }
+
+        // Todo - apply event modifiers to the production?
+
+        ResourceManagerBehaviour.Instance.UpdateResources(production);
 
         return;
     }
 
-    public List<Decision> SelectDecisions()
+    public void SelectDecisions()
     {
         List<Decision> decisions = new List<Decision>();
 
@@ -229,23 +179,13 @@ public class GameManager : MonoBehaviour
             BuildingBehaviour building = m_buildings[id];
             if (building.CanUpgrade(ResourceManagerBehaviour.Instance.m_resources))
             {
-                GenerateDecision(decision_id, building);
+                Decision decision = new BuildingDecision(decision_id, building);
+                decisions.Add(decision);
                 decision_id++;
             }
         }
 
-        // Publish decision to clients
-        GetComponent<NetworkServer>().UpdateAllPlayersDecisions(decisions);
-
-        return decisions;
-    }
-
-    public Decision GenerateDecision(int id, BuildingBehaviour building)
-    {
-        return new Decision{
-            m_decision_id = id,
-            m_resources_needed = building.GetRequiredResourcesForUpgrade(),
-        };
+        PublishDecisions(decisions);
     }
 
     public bool AreAllPlayersReady()
@@ -260,12 +200,41 @@ public class GameManager : MonoBehaviour
         return true;
     }
 
-    public void WorldEvent()
+    public void PublishDecision(Decision decision)
     {
-        WorldEvent world_event  = m_events[m_turn_counter];
+        List<Decision> decisions = new List<Decision>() { decision };
+        PublishDecisions(decisions);
+    }
 
-        // TODO - run the event
+    public void PublishDecisions(List<Decision> decisions)
+    {
+        // Set the current server-side decisions
+        m_decisions = decisions;
 
+        // Publish decision to clients
+        GetComponent<NetworkServer>().UpdateAllPlayersDecisions(decisions);
+    }
+
+    public void DoWorldEvent()
+    {
+        WorldEvent world_event = m_events[m_turn_counter];
+
+        switch (world_event.m_type)
+        {
+            case EventType.Decision:
+                Decision decision = new EventDecision(0, world_event as DecisionWorldEvent);
+                PublishDecision(decision);
+                break;
+
+            case EventType.Automatic:
+                world_event.ApplyEvent();
+                break;
+
+            default:
+                Debug.Log("What are we doing here?");
+                break;
+        }
+        
         return;
     }
 
@@ -290,15 +259,6 @@ public class GameManager : MonoBehaviour
             T temp = array[n];
             array[n] = array[k];
             array[k] = temp;
-        }
-    }
-
-    // update the currently selectable decisions
-    public void UpdateDecisions()
-    {
-        foreach (Decision decision in m_decisions)
-        {
-
         }
     }
 
@@ -327,5 +287,10 @@ public class GameManager : MonoBehaviour
         }
 
         return ResourceManagerBehaviour.Instance.m_resources.isFeasible();
+    }
+
+    public void SetModifier(CalculationEvent modifier)
+    {
+        m_modifier = modifier;
     }
 }

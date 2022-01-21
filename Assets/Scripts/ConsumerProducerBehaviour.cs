@@ -21,7 +21,7 @@ public class ConsumerProducerBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -47,10 +47,10 @@ public class ConsumerProducerBehaviour : MonoBehaviour
         // do nothing
     }
 
-    public void ConsumeProduce()
+    public Resources ConsumeProduce()
     {
         m_calculation.Invoke(this);
         // Debug.Log("Calculated = " + m_calculated_consumption);
-        ResourceManagerBehaviour.Instance.UpdateResources(m_calculated_consumption);
+        return m_calculated_consumption;
     }
 }

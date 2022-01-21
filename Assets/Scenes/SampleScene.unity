@@ -188,7 +188,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_buildings: []
   m_turn_counter: 0
-  m_events: []
+  m_events:
+  - {fileID: 11400000, guid: 725d6e530c88f10459ed5a9292d1f258, type: 2}
+  m_nop_event: {fileID: 0}
+  m_gameState: 0
+  max_turns: 12
 --- !u!1 &866543865
 GameObject:
   m_ObjectHideFlags: 0
@@ -401,113 +405,60 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2079390494
-GameObject:
+--- !u!1001 &3238392954389495446
+PrefabInstance:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2079390496}
-  - component: {fileID: 2079390498}
-  - component: {fileID: 2079390497}
-  m_Layer: 0
-  m_Name: Farm
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2079390496
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2079390494}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5395527, y: 0.7913703, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2079390497
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2079390494}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d161aca18270c0469cb3f5f77f7c8d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_producer: {fileID: 0}
-  m_level: 0
-  m_level_requirments:
-  - m_energy: 0
-    m_food: 0
-    m_workforce: 0
-    m_wood: 0
-    m_minerals: 0
-  - m_energy: 0
-    m_food: 0
-    m_workforce: 0
-    m_wood: 0
-    m_minerals: 0
-  m_workforce: 10
---- !u!114 &2079390498
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2079390494}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11e5ee3510b161f458ca972c2a0cd331, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_base_consumption:
-    m_energy: 0
-    m_food: 0
-    m_workforce: 0
-    m_wood: 0
-    m_minerals: 0
-  m_calculation:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2079390497}
-        m_TargetAssemblyTypeName: FarmBehaviour, Assembly-CSharp
-        m_MethodName: BasicFarmCalculation
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2079390498}
-        m_TargetAssemblyTypeName: ConsumerProducerBehaviour, Assembly-CSharp
-        m_MethodName: ProducerCalculation
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  m_calculated_consumption:
-    m_energy: 0
-    m_food: 0
-    m_workforce: 0
-    m_wood: 0
-    m_minerals: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3238392952391959944, guid: 3484865e452c15e4a81c00443feae871, type: 3}
+      propertyPath: m_Name
+      value: Farm
+      objectReference: {fileID: 0}
+    - target: {fileID: 3238392952391959990, guid: 3484865e452c15e4a81c00443feae871, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3238392952391959990, guid: 3484865e452c15e4a81c00443feae871, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.5395527
+      objectReference: {fileID: 0}
+    - target: {fileID: 3238392952391959990, guid: 3484865e452c15e4a81c00443feae871, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.7913703
+      objectReference: {fileID: 0}
+    - target: {fileID: 3238392952391959990, guid: 3484865e452c15e4a81c00443feae871, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3238392952391959990, guid: 3484865e452c15e4a81c00443feae871, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3238392952391959990, guid: 3484865e452c15e4a81c00443feae871, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3238392952391959990, guid: 3484865e452c15e4a81c00443feae871, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3238392952391959990, guid: 3484865e452c15e4a81c00443feae871, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3238392952391959990, guid: 3484865e452c15e4a81c00443feae871, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3238392952391959990, guid: 3484865e452c15e4a81c00443feae871, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3238392952391959990, guid: 3484865e452c15e4a81c00443feae871, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3484865e452c15e4a81c00443feae871, type: 3}

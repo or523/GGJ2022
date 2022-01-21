@@ -117,6 +117,16 @@ public class Resources : INetworkSerializable
         }
     }
 
+    // for when you want the resources to be a natural amount
+    public void FixNegatives()
+    {
+        m_energy    = (m_energy >= 0)    ? m_energy     : 0;
+        m_food      = (m_food >= 0)      ? m_food       : 0;
+        m_workforce = (m_workforce >= 0) ? m_workforce  : 0;
+        m_wood      = (m_wood >= 0)      ? m_wood       : 0;
+        m_minerals  = (m_minerals >= 0)  ? m_minerals   : 0;
+    }
+
     public bool isFeasible()
     {
         return this >= new Resources();
@@ -162,6 +172,7 @@ public class ResourceManagerBehaviour : MonoBehaviour
     public void UpdateResources(Resources delta)
     {
         m_resources += delta;
+        m_resources.FixNegatives();
         // Debug.Log("Delta:" + delta + ", Resources: " + m_resources);
     }
 

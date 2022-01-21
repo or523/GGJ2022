@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BuildingBehaviour : MonoBehaviour
+using Unity.Netcode;
+
+public class BuildingBehaviour : MonoBehaviour, INetworkSerializable
 {
     [HideInInspector]
     public ConsumerProducerBehaviour m_producer;
@@ -33,13 +35,18 @@ public class BuildingBehaviour : MonoBehaviour
         }
     }
 
-    public void Produce()
+    public Resources Produce()
     {
-        m_producer.ConsumeProduce();
+        return m_producer.ConsumeProduce();
     }
 
     public Resources GetRequiredResourcesForUpgrade()
     {
         return m_level_requirments[m_level];
+    }
+
+    public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
+    {
+        // TODO - serialize anything?
     }
 }
