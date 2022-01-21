@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using Unity.Netcode;
+using System;
 
 public enum DecisionType
 {
@@ -11,7 +12,7 @@ public enum DecisionType
     Event,
 }
 
-public abstract class Decision : INetworkSerializable
+public class Decision : INetworkSerializable
 {
     public int          m_decision_id;
     public Resources    m_resources_needed;
@@ -64,7 +65,10 @@ public abstract class Decision : INetworkSerializable
         );
     }
 
-    public abstract void ApplyDecision();
+    public virtual void ApplyDecision()
+    {
+        throw new NotImplementedException();
+    }
 
     public virtual void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
     {

@@ -23,6 +23,7 @@ public class PlayerUIController : MonoBehaviour
     void Start()
     {
         m_decisions = new List<Decision>();
+
         GetComponent<UIDocument>().visualTreeAsset = playerUI;
 
         var root = GetComponent<UIDocument>().rootVisualElement;
@@ -41,7 +42,7 @@ public class PlayerUIController : MonoBehaviour
         // will recycle elements created by the "makeItem"
         // and invoke the "bindItem" callback to associate
         // the element with the matching data item (specified as an index in the list)
-        Action<VisualElement, int> bindItem = (e, i) => (e as Label).text = m_decisions[i].ToString();
+        Action<VisualElement, int> bindItem = (e, i) => (e as Label).text = ("Decision:" + m_decisions[i].ToString());
 
         playerDecisionsListView.makeItem = makeItem;
         playerDecisionsListView.bindItem = bindItem;
@@ -68,7 +69,9 @@ public class PlayerUIController : MonoBehaviour
     public void UpdatePlayerDecisions(List<Decision> decisions)
     {
         // Update decisions
+        Debug.Log(decisions);
         m_decisions.Clear();
         m_decisions.AddRange(decisions);
+        playerDecisionsListView.RefreshItems();
     }
 }
