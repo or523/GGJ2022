@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using System;
+using Unity.Netcode;
 
-public class Decision
+public class Decision : INetworkSerializable
 {
     public int          m_decision_id;
     public Resources    m_resources_needed;
@@ -69,6 +70,15 @@ public class Decision
             // reimburse
             ResourceManagerBehaviour.Instance.UpdateResources(m_resources_allocated);
         }
+    }
+
+    public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
+    {
+        serializer.SerializeValue(ref m_decision_id);
+        m_resources_needed.NetworkSerialize(serializer);
+        m_resources_allocated.NetworkSerialize(serializer);
+        serializer.SerializeValue(ref m_is_selectable);
+        serializer.SerializeValue(ref m_is_selected);
     }
 }
 

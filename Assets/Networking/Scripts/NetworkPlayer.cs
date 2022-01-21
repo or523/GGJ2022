@@ -39,7 +39,7 @@ public class NetworkPlayer : NetworkBehaviour
 
     // Example for ClientRPC we can send to the players
     [ClientRpc]
-    public void UpdatePlayerDecisionsClientRpc(List<Decision> decisions)
+    public void UpdatePlayerDecisionsClientRpc(Decision[] decisions)
     {
         // We don't want server to get this updates
         if (IsServer || !IsLocalPlayer)

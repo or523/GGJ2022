@@ -31,7 +31,7 @@ public class NetworkServer : MonoBehaviour
     {
         foreach(GameObject player in GetAllPlayersObjects())
         {
-            player.GetComponent<NetworkPlayer>().UpdatePlayerDecisionsClientRpc(decisions);
+            player.GetComponent<NetworkPlayer>().UpdatePlayerDecisionsClientRpc(decisions.ToArray());
         }
     }
 }

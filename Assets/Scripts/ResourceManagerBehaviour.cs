@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
 public enum ResourceType
@@ -12,7 +13,7 @@ public enum ResourceType
 }
 
 [System.Serializable]
-public class Resources
+public class Resources : INetworkSerializable
 {
     public int m_energy;
     public int m_food;
@@ -119,6 +120,15 @@ public class Resources
     public bool isFeasible()
     {
         return this >= new Resources();
+    }
+
+    public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
+    {
+        serializer.SerializeValue(ref m_energy);
+        serializer.SerializeValue(ref m_food);
+        serializer.SerializeValue(ref m_workforce);
+        serializer.SerializeValue(ref m_wood);
+        serializer.SerializeValue(ref m_minerals);
     }
 }
 
