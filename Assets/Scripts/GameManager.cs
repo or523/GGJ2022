@@ -122,7 +122,7 @@ public class GameManager : MonoBehaviour
 
     public GameState m_gameState;
 
-    public const int NUM_PLAYERS = 4;
+    public const int NUM_PLAYERS = 1;
     
     public int max_turns = 12;
 
@@ -135,6 +135,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        m_players = new Dictionary<ulong, GameObject>();
         m_buildings = GameObject.FindObjectsOfType<BuildingBehaviour>();
 
         Shuffle(m_events);
@@ -153,6 +154,7 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.GameStart:
+                GetComponent<NetworkServer>().UpdateAllPlayersGameStarted();
                 m_gameState = GameState.Produce;
                 break;
 
@@ -229,7 +231,7 @@ public class GameManager : MonoBehaviour
             BuildingBehaviour building = m_buildings[id];
             if (building.CanUpgrade(ResourceManagerBehaviour.Instance.m_resources))
             {
-                GenerateDecision(decision_id, building);
+                decisions.Add(GenerateDecision(decision_id, building));
                 decision_id++;
             }
         }
@@ -327,5 +329,10 @@ public class GameManager : MonoBehaviour
         }
 
         return ResourceManagerBehaviour.Instance.m_resources.isFeasible();
+    }
+
+    public int PlayersCount
+    {
+        get { return m_players.Count; }
     }
 }

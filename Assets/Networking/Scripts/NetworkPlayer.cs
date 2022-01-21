@@ -37,6 +37,18 @@ public class NetworkPlayer : NetworkBehaviour
         }
     }
 
+    // Starts the game at each player
+    [ClientRpc]
+    public void StartGameClientRpc()
+    {
+        if (!IsLocalPlayer)
+        {
+            return;
+        }
+
+        GameObject.FindGameObjectWithTag("UIManager").GetComponent<MenuUIController>().SwitchToPlayerMenu();
+    }
+
     // Example for ClientRPC we can send to the players
     [ClientRpc]
     public void UpdatePlayerDecisionsClientRpc(Decision[] decisions)
@@ -47,8 +59,9 @@ public class NetworkPlayer : NetworkBehaviour
             return;
         }
 
-        // TODO: update state on the player
-        Debug.Log(string.Format("Update Player Decisions State: {0}", decisions.ToString()));
+        // Update state on the player
+        Debug.Log("Decisions updated on player");
+        GameObject.FindGameObjectWithTag("UIManager").GetComponent<PlayerUIController>().UpdatePlayerDecisions(new List<Decision>(decisions));
     }
 
     [ServerRpc]
