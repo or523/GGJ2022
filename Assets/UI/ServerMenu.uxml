@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement style="height: 100%; align-items: center; justify-content: flex-start; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; background-image: url(&apos;project://database/Assets/UI/background_mobile.png?fileID=2800000&amp;guid=88f77bb291afc2c48aeb8d4bbeea9696&amp;type=3#background_mobile&apos;); width: 100%; padding-left: 20px; padding-right: 20px; padding-top: 20px; padding-bottom: 20px; -unity-background-scale-mode: scale-to-fit;">
+        <ui:Button text="Start Server" display-tooltip-when-elided="true" name="start-button" style="height: 49px; width: 121px; align-items: center; justify-content: flex-end;" />
+        <ui:Label text="Server IP: ..." display-tooltip-when-elided="true" name="ip-text" style="margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;" />
+        <ui:Label text="0 / 4 Players" display-tooltip-when-elided="true" name="players-count-text" style="margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;" />
+    </ui:VisualElement>
+</ui:UXML>

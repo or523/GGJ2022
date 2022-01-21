@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
 
     public GameState m_gameState;
 
-    public const int NUM_PLAYERS = 4;
+    public const int NUM_PLAYERS = 1;
     
     public int max_turns;
 
@@ -58,6 +58,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        m_players = new Dictionary<ulong, GameObject>();
         m_buildings = GameObject.FindObjectsOfType<BuildingBehaviour>();
 
         int num_events_to_pad = max_turns - m_events.Length;
@@ -95,6 +96,7 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.GameStart:
+                GetComponent<NetworkServer>().UpdateAllPlayersGameStarted();
                 m_gameState = GameState.Produce;
                 break;
 
@@ -292,5 +294,10 @@ public class GameManager : MonoBehaviour
     public void SetModifier(CalculationEvent modifier)
     {
         m_modifier = modifier;
+    }
+    
+    public int PlayersCount
+    {
+        get { return m_players.Count; }
     }
 }

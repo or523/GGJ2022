@@ -19,14 +19,10 @@ public class TestNetworkScript : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.C))
         {
             // TODO: fill with actual server address
-            NetworkManager.Singleton.GetComponent<UNetTransport>().ConnectAddress = "127.0.0.1";
-            NetworkManager.Singleton.StartClient();
         }
         // This is a server starting
         else if (Input.GetKeyUp(KeyCode.S))
         {
-            Debug.Log("Attempting to start server..");
-            NetworkManager.Singleton.StartServer();
         }
         // Send Client RPC
         else if (Input.GetKeyUp(KeyCode.Z))
