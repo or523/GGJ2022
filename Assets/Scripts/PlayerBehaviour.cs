@@ -18,21 +18,4 @@ public class PlayerBehaviour : MonoBehaviour
         
     }
 
-    public void SelectDecision(Decision decision)
-    {
-        // can only select stuff that are selectable and were not selected
-        if (decision.m_is_selectable && !decision.m_is_selected)
-        {
-            decision.Select(m_controlled_resource);            
-        }
-    }
-
-    public void UnselectDecision(Decision decision)
-    {
-        // can only de-select stuff that are selectable and were selected
-        if (decision.m_is_selectable && decision.m_is_selected)
-        {
-            decision.Unselect(m_controlled_resource);
-        }
-    }
 }

@@ -7,10 +7,16 @@ using UnityEngine;
 // The server can query this object and run 
 public class NetworkPlayer : NetworkBehaviour
 {
+    public static NetworkPlayer LocalInstance = null;
+    public NetworkVariable<bool> isReady;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (!IsLocalPlayer)
+        {
+            // TODO: disable
+        }
     }
 
     // Update is called once per frame
@@ -19,9 +25,21 @@ public class NetworkPlayer : NetworkBehaviour
         
     }
 
+    override public void OnNetworkSpawn()
+    {
+        if (IsServer)
+        {
+            GameManager.Instance.AddPlayer(NetworkObjectId, gameObject);
+        }
+        else if (IsLocalPlayer)
+        {
+            LocalInstance = this;
+        }
+    }
+
     // Example for ClientRPC we can send to the players
     [ClientRpc]
-    public void UpdatePlayerStateClientRpc(int state)
+    public void UpdatePlayerDecisionsClientRpc(List<Decision> decisions)
     {
         // We don't want server to get this updates
         if (IsServer || !IsLocalPlayer)
@@ -30,11 +48,11 @@ public class NetworkPlayer : NetworkBehaviour
         }
 
         // TODO: update state on the player
-        Debug.Log(string.Format("Update Player State: {0}", state));
+        Debug.Log(string.Format("Update Player Decisions State: {0}", decisions.ToString()));
     }
 
     [ServerRpc]
-    void UpdatePlayerDecisionServerRPC(int decision)
+    void UpdatePlayerDecisionServerRPC(int decision_id, ResourceType resource, bool is_selected)
     {
         // We don't want players to get this update
         if (!IsServer)
@@ -42,7 +60,16 @@ public class NetworkPlayer : NetworkBehaviour
             return;
         }
 
-        // TODO: Find GameManager and update its state
-        Debug.Log(string.Format("Update Player Decision: {}", decision));
+        // Find GameManager and update its state
+        GameManager.Instance.UpdateDecision(decision_id, resource, is_selected);
+    }
+
+    [ServerRpc]
+    void UpdatePlayerIsReadyServerRPC(bool is_ready)
+    {
+        if (GameManager.Instance.CanPlayersReady(is_ready))
+        {
+            this.isReady.Value = is_ready;
+        }
     }
 }

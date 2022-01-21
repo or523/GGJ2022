@@ -6,7 +6,7 @@ using System;
 
 public class Decision
 {
-    public int          m_building_id;
+    public int          m_decision_id;
     public Resources    m_resources_needed;
     public Resources    m_resources_allocated;
     public bool         m_is_selectable;            // is the decision available?
@@ -78,6 +78,18 @@ public class WorldEvent
     
 }
 
+public enum GameState
+{
+    WaitingForPlayers,
+    GameStart,
+    Produce,
+    SelectDecisions,
+    PlayersMove,
+    WorldEvent,
+    TurnEnd,
+    GameEnd
+};
+
 public class GameManager : MonoBehaviour
 {
     // stores all buildings - the index is used as ID for selecting the building
@@ -92,6 +104,24 @@ public class GameManager : MonoBehaviour
     // current decisions
     public List<Decision> m_decisions;
 
+    // Singleton
+    public static GameManager Instance = null;
+
+    // Current Players
+    public Dictionary<ulong, GameObject> m_players;
+
+    public GameState m_gameState;
+
+    public const int NUM_PLAYERS = 4;
+    
+    public int max_turns = 12;
+
+    void Awake()
+    {
+        Instance = this;
+        m_gameState = GameState.WaitingForPlayers;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -103,23 +133,68 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // produce resources from buildings
-        Produce();
+        switch(m_gameState)
+        {
+            case GameState.WaitingForPlayers:
+                if (m_players.Count == NUM_PLAYERS)
+                {
+                    m_gameState = GameState.GameStart;
+                }
+                break;
 
-        // select the available decisions for this turn
-        m_decisions = SelectDecisions();
+            case GameState.GameStart:
+                m_gameState = GameState.Produce;
+                break;
 
-        // let the players make their move
-        PlayersMove(m_decisions);
+            case GameState.Produce:
+                // produce resources from buildings
+                Produce();
+                m_gameState = GameState.SelectDecisions;
+                break;
 
-        // do a random world event
-        WorldEvent();
+            case GameState.SelectDecisions:
+                // select the available decisions for this turn
+                m_decisions = SelectDecisions();
+                m_gameState = GameState.PlayersMove;
+                break;
 
-        // update the turn count
-        CountTurns();
+            case GameState.PlayersMove:
+                // let the players make their move
+                if (AreAllPlayersReady())
+                {
+                    // TODO: commit decisions
+                    m_gameState = GameState.WorldEvent;
+                }
+                break;
 
-        // check if should end game, and end it if so need be
-        EndGame();
+            case GameState.WorldEvent:
+                // do a random world event
+                WorldEvent();
+
+                // update the turn count
+                CountTurns();
+
+                // TODO: check if turns ran out
+                if (max_turns == m_turn_counter)
+                {
+                    m_gameState = GameState.GameEnd;
+                }
+                else
+                {
+                    m_gameState = GameState.Produce;
+                }
+
+                break;
+
+            case GameState.GameEnd:
+                // check if should end game, and end it if so need be
+                EndGame();
+                break;
+
+            default:
+                Debug.Log("WTF");
+                break;
+        }
     }
 
     public void Produce()
@@ -138,14 +213,19 @@ public class GameManager : MonoBehaviour
 
         // check what buildings are upgradable with the current resources
         // loop by index since we need the building ID
+        int decision_id = 0;
         for (int id=0; id<m_buildings.Length; ++id)
         {
             BuildingBehaviour building = m_buildings[id];
             if (building.CanUpgrade(ResourceManagerBehaviour.Instance.m_resources))
             {
-                GenerateDecision(id, building);
+                GenerateDecision(decision_id, building);
+                decision_id++;
             }
         }
+
+        // Publish decision to clients
+        GetComponent<NetworkServer>().UpdateAllPlayersDecisions(decisions);
 
         return decisions;
     }
@@ -153,14 +233,21 @@ public class GameManager : MonoBehaviour
     public Decision GenerateDecision(int id, BuildingBehaviour building)
     {
         return new Decision{
-            m_building_id = id,
+            m_decision_id = id,
             m_resources_needed = building.GetRequiredResourcesForUpgrade(),
         };
     }
 
-    public void PlayersMove(List<Decision> decisions)
+    public bool AreAllPlayersReady()
     {
-        return;
+        foreach(KeyValuePair<ulong,GameObject> p in m_players)
+        {
+            if (!p.Value.GetComponent<NetworkPlayer>().isReady.Value)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
     public void WorldEvent()
@@ -203,5 +290,32 @@ public class GameManager : MonoBehaviour
         {
 
         }
+    }
+
+    public void UpdateDecision(int decision_id, ResourceType resource, bool is_selected)
+    {
+        if (is_selected)
+        {
+            m_decisions[decision_id].Select(resource);
+        }
+        else
+        {
+            m_decisions[decision_id].Unselect(resource);
+        }
+    }
+
+    public void AddPlayer(ulong networkId, GameObject gameObject)
+    {
+        m_players.Add(networkId, gameObject);
+    }
+
+    public bool CanPlayersReady(bool is_ready)
+    {
+        if (!is_ready)
+        {
+            return true;
+        }
+
+        return ResourceManagerBehaviour.Instance.m_resources.isFeasible();
     }
 }

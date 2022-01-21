@@ -115,6 +115,11 @@ public class Resources
                 break;
         }
     }
+
+    public bool isFeasible()
+    {
+        return this >= new Resources();
+    }
 }
 
 public class ResourceManagerBehaviour : MonoBehaviour

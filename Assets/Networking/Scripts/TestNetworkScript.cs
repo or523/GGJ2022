@@ -34,7 +34,7 @@ public class TestNetworkScript : MonoBehaviour
             // Iterate over all players
             foreach(KeyValuePair<ulong, NetworkClient> player in NetworkManager.Singleton.ConnectedClients)
             {
-                player.Value.PlayerObject.gameObject.GetComponent<NetworkPlayer>().UpdatePlayerStateClientRpc((int) player.Key);
+                //player.Value.PlayerObject.gameObject.GetComponent<NetworkPlayer>().UpdatePlayerStateClientRpc((int) player.Key);
             }
         }
     }
