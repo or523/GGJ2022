@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1563daad8830eec488ca01617bea90c8
+guid: 8103a8df71fdaf344a006a7531290e48
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -116,7 +116,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: spaceship_spritesheet_W200_H370_0
+      name: spaceship_spritesheet_W200_H370 1_0
       rect:
         serializedVersion: 2
         x: 1
@@ -130,14 +130,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 94c28a8977749e14baa871eccf0c2e24
-      internalID: -818966719
+      spriteID: d7dd362f0e7348549b4078e1b4e17cfd
+      internalID: -2018523033
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spaceship_spritesheet_W200_H370_1
+      name: spaceship_spritesheet_W200_H370 1_1
       rect:
         serializedVersion: 2
         x: 200
@@ -151,14 +151,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 398cc3b38fc369142864a65ca0a35563
-      internalID: 633455943
+      spriteID: 97aad2d15676ea740b8134fb25c0df89
+      internalID: -1764534046
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spaceship_spritesheet_W200_H370_2
+      name: spaceship_spritesheet_W200_H370 1_2
       rect:
         serializedVersion: 2
         x: 400
@@ -172,8 +172,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6893eddba3e206f49a2ae368d25b87ee
-      internalID: -1466079548
+      spriteID: 0830054aaa66aca4abfe206105852941
+      internalID: -364558616
       vertices: []
       indices: 
       edges: []
@@ -189,9 +189,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      spaceship_spritesheet_W200_H370_1: 633455943
-      spaceship_spritesheet_W200_H370_0: -818966719
-      spaceship_spritesheet_W200_H370_2: -1466079548
+      spaceship_spritesheet_W200_H370 1_0: -2018523033
+      spaceship_spritesheet_W200_H370 1_2: -364558616
+      spaceship_spritesheet_W200_H370 1_1: -1764534046
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
