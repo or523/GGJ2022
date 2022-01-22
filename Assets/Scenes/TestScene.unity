@@ -222,7 +222,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &138777783
 Transform:
   m_ObjectHideFlags: 0
@@ -534,7 +534,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &595158353
 PrefabInstance:
@@ -1006,7 +1006,6 @@ MonoBehaviour:
   mainMenu: {fileID: 9197481963319205126, guid: 3ec502876d503634c98af43efc13daa7, type: 3}
   serverMenu: {fileID: 9197481963319205126, guid: 806f7466022c03b42a8e2275d8040004, type: 3}
   clientMenu: {fileID: 9197481963319205126, guid: f07260b4d7e58734c8ce502f8b0dbf32, type: 3}
-  gameManager: {fileID: 1627268629}
 --- !u!114 &1818471542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1034,118 +1033,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serverGameUI: {fileID: 9197481963319205126, guid: f735e6799f740b14aa0857de685b0fa8, type: 3}
   decisionCard: {fileID: 9197481963319205126, guid: cf98c4e742233534bbff6c03fc459757, type: 3}
---- !u!1 &1925698599
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1925698602}
-  - component: {fileID: 1925698601}
-  - component: {fileID: 1925698600}
-  m_Layer: 0
-  m_Name: Farm
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1925698600
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1925698599}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d161aca18270c0469cb3f5f77f7c8d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_producer: {fileID: 0}
-  m_level: 0
-  m_level_requirments:
-  - m_energy: 0
-    m_food: 0
-    m_workforce: 0
-    m_wood: 0
-    m_minerals: 0
-  - m_energy: 0
-    m_food: 0
-    m_workforce: 0
-    m_wood: 0
-    m_minerals: 0
-  m_renderer: {fileID: 0}
-  m_sprites: []
-  m_workforce: 10
---- !u!114 &1925698601
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1925698599}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11e5ee3510b161f458ca972c2a0cd331, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_base_consumption:
-    m_energy: 0
-    m_food: 0
-    m_workforce: 0
-    m_wood: 0
-    m_minerals: 0
-  m_calculation:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1925698600}
-        m_TargetAssemblyTypeName: FarmBehaviour, Assembly-CSharp
-        m_MethodName: BasicFarmCalculation
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1925698601}
-        m_TargetAssemblyTypeName: ConsumerProducerBehaviour, Assembly-CSharp
-        m_MethodName: ProducerCalculation
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  m_calculated_consumption:
-    m_energy: 0
-    m_food: 0
-    m_workforce: 0
-    m_wood: 0
-    m_minerals: 0
---- !u!4 &1925698602
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1925698599}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5395527, y: 0.7913703, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  displayManager: {fileID: 138777782}
 --- !u!1001 &1103243308839885809
 PrefabInstance:
   m_ObjectHideFlags: 0

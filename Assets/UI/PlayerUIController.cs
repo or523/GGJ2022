@@ -33,6 +33,9 @@ public class PlayerUIController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // disable the game manager
+        GameManager.Instance.GetComponent<GameManager>().enabled = false;
+        
         m_decisions = new List<Decision>();
 
         GetComponent<UIDocument>().visualTreeAsset = playerUI;

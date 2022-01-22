@@ -30,6 +30,8 @@ public class ServerGameUIController : MonoBehaviour
 
     public List<Decision> m_decisions;
 
+    public GameObject displayManager;
+
     void Awake()
     {
         ServerGameUIController.Instance = this;
@@ -38,6 +40,9 @@ public class ServerGameUIController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // start ambient music
+        AudioManager.Instance.PlayAmbience();
+
         m_decisions = new List<Decision>();
         GetComponent<UIDocument>().visualTreeAsset = serverGameUI;
 

@@ -28,8 +28,6 @@ public class MenuUIController : MonoBehaviour
     public VisualTreeAsset serverMenu;
     public VisualTreeAsset clientMenu;
 
-    public GameObject gameManager;
-
     // Start is called before the first frame update
     void Start()
     {
