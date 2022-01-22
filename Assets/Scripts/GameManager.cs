@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
 
     public GameState m_gameState;
 
-    public const int NUM_PLAYERS = 1;
+    public const int NUM_PLAYERS = 4;
     
     public int max_turns;
 
