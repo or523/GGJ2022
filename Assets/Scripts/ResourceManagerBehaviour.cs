@@ -15,11 +15,11 @@ public enum ResourceType
 [System.Serializable]
 public class Resources : INetworkSerializable
 {
-    public int m_energy;
-    public int m_food;
-    public int m_workforce;
-    public int m_wood;
-    public int m_minerals;
+    public float m_energy;
+    public float m_food;
+    public float m_workforce;
+    public float m_wood;
+    public float m_minerals;
 
     public Resources()
     {
@@ -30,7 +30,7 @@ public class Resources : INetworkSerializable
         m_minerals   = 0;
     }
 
-    public Resources(int energy, int food, int workforce, int wood, int minerals)
+    public Resources(float energy, float food, float workforce, float wood, float minerals)
     {
         m_energy     = energy;
         m_food       = food;
@@ -50,6 +50,19 @@ public class Resources : INetworkSerializable
         summed.m_minerals   = a.m_minerals  + b.m_minerals;
 
         return summed;
+    }
+
+    public static Resources operator *(Resources a, Resources b)
+    {
+        Resources multiplied = new Resources();
+        
+        multiplied.m_energy     = a.m_energy    * b.m_energy;
+        multiplied.m_food       = a.m_food      * b.m_food;
+        multiplied.m_workforce  = a.m_workforce * b.m_workforce;
+        multiplied.m_wood       = a.m_wood      * b.m_wood;
+        multiplied.m_minerals   = a.m_minerals  * b.m_minerals;
+
+        return multiplied;
     }
 
     public static Resources operator -(Resources a) 
@@ -117,6 +130,31 @@ public class Resources : INetworkSerializable
         }
     }
 
+    public float GetByType(ResourceType type)
+    {
+        switch (type)
+        {
+            case ResourceType.Energy:
+                return this.m_energy;
+
+            case ResourceType.Food:
+                return this.m_food;
+
+            case ResourceType.Workforce:
+                return this.m_workforce;
+
+            case ResourceType.Wood:
+                return this.m_wood;
+
+            case ResourceType.Minerals:
+                return this.m_minerals;
+
+            default:
+                Debug.Log("What the...");
+                return 0;
+        }
+    }    
+
     // for when you want the resources to be a natural amount
     public void FixNegatives()
     {
@@ -147,8 +185,11 @@ public class ResourceManagerBehaviour : MonoBehaviour
     // singleton
     static public ResourceManagerBehaviour Instance {get; private set;}
 
-    // resources
+    // current resources
     public Resources m_resources;
+
+    // total produced
+    public Resources m_alltime_total;
 
     void Awake()
     {
@@ -171,13 +212,23 @@ public class ResourceManagerBehaviour : MonoBehaviour
 
     public void UpdateResources(Resources delta)
     {
+        // update the current resources
         m_resources += delta;
         m_resources.FixNegatives();
-        // Debug.Log("Delta:" + delta + ", Resources: " + m_resources);
+        
+        // update the totals - only take the positive values of delta
+        delta.FixNegatives();
+        m_alltime_total += delta;
     }
 
     public void UpdateByType(Resources value, ResourceType type)
     {
+        // update the current resources
         m_resources.UpdateByType(value, type);
+        m_resources.FixNegatives();
+
+        // update the totals - only take the positive values of delta
+        value.FixNegatives();
+        m_alltime_total.UpdateByType(value, type);
     }
 }

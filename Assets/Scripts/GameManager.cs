@@ -44,7 +44,10 @@ public class GameManager : MonoBehaviour
     
     public int max_turns;
 
-    public CalculationEvent m_modifier;
+    public ConsumerProducerBehaviour m_modifier;
+
+    // mission templates
+    public Mission[] m_mission_templates;
 
     void Awake()
     {
@@ -162,7 +165,12 @@ public class GameManager : MonoBehaviour
             production = building.Produce();
         }
 
-        // Todo - apply event modifiers to the production?
+        // if there is an active modifier - apply
+        if (null != m_modifier)
+        {
+            m_modifier.m_base_consumption = production;
+            production = m_modifier.ConsumeProduce();
+        }
 
         ResourceManagerBehaviour.Instance.UpdateResources(production);
 
@@ -291,7 +299,7 @@ public class GameManager : MonoBehaviour
         return ResourceManagerBehaviour.Instance.m_resources.isFeasible();
     }
 
-    public void SetModifier(CalculationEvent modifier)
+    public void SetModifier(ConsumerProducerBehaviour modifier)
     {
         m_modifier = modifier;
     }

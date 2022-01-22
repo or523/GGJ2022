@@ -159,6 +159,12 @@ MonoBehaviour:
     m_workforce: 0
     m_wood: 0
     m_minerals: 0
+  m_alltime_total:
+    m_energy: 0
+    m_food: 0
+    m_workforce: 0
+    m_wood: 0
+    m_minerals: 0
 --- !u!4 &793400647
 Transform:
   m_ObjectHideFlags: 0
@@ -189,10 +195,16 @@ MonoBehaviour:
   m_buildings: []
   m_turn_counter: 0
   m_events:
-  - {fileID: 11400000, guid: 725d6e530c88f10459ed5a9292d1f258, type: 2}
-  m_nop_event: {fileID: 0}
+  - {fileID: 8484306314806145362, guid: 3299f4346e2b904498d03e4fd1e1f1d8, type: 3}
+  - {fileID: 2897255116102312089, guid: 2b798d00cb0479c4593e8bd72d680289, type: 3}
+  m_nop_event: {fileID: 675959845988890732, guid: 9518c89a55e2b64428663ed3309c37b9, type: 3}
   m_gameState: 0
   max_turns: 12
+  m_modifier: {fileID: 0}
+  m_mission_templates:
+  - {fileID: 11400000, guid: c2fe7d85352bd7449b41a7e44b2f1b58, type: 2}
+  - {fileID: 11400000, guid: b4a554609115c6d479da74812dcb9b63, type: 2}
+  - {fileID: 11400000, guid: b28458f5368c45e43a631b6066ff0af2, type: 2}
 --- !u!1 &866543865
 GameObject:
   m_ObjectHideFlags: 0

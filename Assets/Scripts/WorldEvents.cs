@@ -11,7 +11,7 @@ public enum EventType
 }
 
 [System.Serializable]
-public abstract class WorldEvent : ScriptableObject, INetworkSerializable
+public abstract class WorldEvent : MonoBehaviour, INetworkSerializable
 {
     public EventType m_type;
 

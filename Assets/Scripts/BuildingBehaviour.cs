@@ -22,8 +22,7 @@ public class BuildingBehaviour : MonoBehaviour, INetworkSerializable
 
     public bool CanUpgrade(Resources resources)
     {
-        return (((m_level+1) < m_level_requirments.Length) 
-            && (resources >= GetRequiredResourcesForUpgrade()));
+        return (!IsMaxLevel() && (resources >= GetRequiredResourcesForUpgrade()));
     }
 
     public void Upgrade(ref Resources resources)
@@ -33,6 +32,11 @@ public class BuildingBehaviour : MonoBehaviour, INetworkSerializable
             resources -= m_level_requirments[m_level];
             ++m_level;
         }
+    }
+
+    public bool IsMaxLevel()
+    {
+        return m_level >= m_level_requirments.Length;
     }
 
     public Resources Produce()

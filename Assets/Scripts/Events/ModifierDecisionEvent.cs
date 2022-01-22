@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-[CreateAssetMenu(fileName = "ModifierDecisionEvent", menuName = "ScriptableObjects/Modifier Event")]
 public class ModifierDecisionEvent : DecisionWorldEvent
 {
-    public CalculationEvent m_calculation;  // the modifier
+    public ConsumerProducerBehaviour m_consumer;
+
+    public Resources m_modifiers;
 
     public override void ApplyEventDecisionMade()
     {
@@ -15,6 +16,11 @@ public class ModifierDecisionEvent : DecisionWorldEvent
 
     public override void ApplyEventDecisionNotMade()
     {
-        GameManager.Instance.SetModifier(m_calculation);
+        GameManager.Instance.SetModifier(m_consumer);
+    }
+
+    public void ModifierCalculation(ConsumerProducerBehaviour consumer)
+    {
+        consumer.m_calculated_consumption *= m_modifiers;
     }
 }

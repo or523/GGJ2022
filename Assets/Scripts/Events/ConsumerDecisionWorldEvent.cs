@@ -4,7 +4,6 @@ using UnityEngine;
 
 // events that consume resources either way
 [System.Serializable]
-[CreateAssetMenu(fileName = "ConsumerDecisionWorldEvent", menuName = "ScriptableObjects/Consumer Event")]
 public class ConsumerDecisionWorldEvent : DecisionWorldEvent
 {
     public Resources m_penalty_resources;
