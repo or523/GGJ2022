@@ -2,7 +2,7 @@
     <Style src="project://database/Assets/UI/PlayerMenu.uss?fileID=7433441132597879392&amp;guid=8463153f89b2f6e4fb858b5dce1545f0&amp;type=3#PlayerMenu" />
     <ui:VisualElement name="decision-card" style="background-image: url(&apos;project://database/Assets/UI/Sprites/hud_task.png?fileID=21300000&amp;guid=af61994e14190a646a8dba24496853da&amp;type=3#hud_task&apos;); width: 370px; height: 185px; flex-direction: column; align-items: center; justify-content: space-around;">
         <ui:VisualElement style="width: 100%; height: 50%; align-items: center; justify-content: center; padding-left: 15%; padding-right: 10%; padding-top: 10px; padding-bottom: 5px;">
-            <ui:Label text="Farm: 1 -&gt; 2" display-tooltip-when-elided="true" name="decision-description" style="font-size: 24%; -unity-font-style: bold; -unity-text-align: upper-center; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;" />
+            <ui:Label text="Farm: 1 -&gt; 2" display-tooltip-when-elided="true" name="decision-description" style="font-size: 24%; -unity-font-style: bold; -unity-text-align: upper-center; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; -unity-font-definition: url(&apos;project://database/Assets/Fonts/Century%20Gothic%20SDF.asset?fileID=11400000&amp;guid=24e562cf7e4ea5044a32db7939fcf0fc&amp;type=2#Century Gothic SDF&apos;);" />
         </ui:VisualElement>
         <ui:VisualElement name="decision-resources" style="flex-direction: row; width: 100%; height: 50%; align-items: center; justify-content: space-around; padding-left: 15%; padding-right: 10%; padding-bottom: 5%; padding-top: 5px;">
             <ui:VisualElement style="align-items: center; justify-content: space-between;">
@@ -23,7 +23,7 @@
             </ui:VisualElement>
             <ui:VisualElement style="align-items: center; justify-content: space-between;">
                 <ui:Label text="Label" display-tooltip-when-elided="true" name="workforce-resource" class="decision-resource-label" />
-                <ui:VisualElement style="background-image: resource(&apos;Sprites/island_big_FLAT&apos;); width: 50px; height: 50px;" />
+                <ui:VisualElement style="background-image: url(&apos;project://database/Assets/UI/Icons/force_55px.png?fileID=2800000&amp;guid=ad9631029617c2846a8aff7bacb9e73e&amp;type=3#force_55px&apos;); width: 55px; height: 55px;" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

@@ -26,6 +26,11 @@ public class PlayerUIController : MonoBehaviour
     public Sprite foodToggle;
     public Sprite woodToggle;
 
+    public Sprite notReadySprite;
+    public Sprite readySprite;
+    public Sprite winSprite;
+    public Sprite loseSprite;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -135,11 +140,11 @@ public class PlayerUIController : MonoBehaviour
         playerReadyButton.userData = state;
         if (state)
         {
-            playerReadyButton.text = "Ready!";
+            playerReadyButton.style.backgroundImage = new StyleBackground(readySprite);
         }
         else
         {
-            playerReadyButton.text = "Ready?";
+            playerReadyButton.style.backgroundImage = new StyleBackground(notReadySprite);
         }
     }
 
@@ -191,11 +196,11 @@ public class PlayerUIController : MonoBehaviour
         playerReadyButton.SetEnabled(false);
         if (won)
         {
-            playerReadyButton.text = "You Lost!";
+            playerReadyButton.style.backgroundImage = new StyleBackground(loseSprite);
         }
         else
         {
-            playerReadyButton.text = "You Won!";
+            playerReadyButton.style.backgroundImage = new StyleBackground(winSprite);
         }
     }
 }

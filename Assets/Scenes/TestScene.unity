@@ -1033,6 +1033,10 @@ MonoBehaviour:
   mineralsToggle: {fileID: 21300000, guid: 9540038a5a5434b48907b655b9df3ad8, type: 3}
   foodToggle: {fileID: 21300000, guid: f41d10ec5ad428e48a92d62bc0539551, type: 3}
   woodToggle: {fileID: 21300000, guid: df5b9d766d166c94eb755e6cde2267fb, type: 3}
+  notReadySprite: {fileID: 21300000, guid: 0d0c3c05d3a7f2f4db3c4ddd5a6ccfa3, type: 3}
+  readySprite: {fileID: 21300000, guid: bfd36e171d048994993f4905b0c06c60, type: 3}
+  winSprite: {fileID: 21300000, guid: b42a14248936cf2459b1f4e7f4986221, type: 3}
+  loseSprite: {fileID: 21300000, guid: d91ac79b8cc89954a9fa6ca4525c35b7, type: 3}
 --- !u!114 &1818471543
 MonoBehaviour:
   m_ObjectHideFlags: 0

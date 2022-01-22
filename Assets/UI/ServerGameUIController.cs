@@ -60,7 +60,7 @@ public class ServerGameUIController : MonoBehaviour
         // Update upper HUD
         UpdateResourceCounts();
         UpdateRoundCount();
-        UpdateEvent("Hurriacne!");
+        UpdateEvent("Good Luck!");
 
         // Bind to decisions
         // The "makeItem" function will be called as needed
