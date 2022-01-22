@@ -825,7 +825,7 @@ MonoBehaviour:
   max_turns: 12
   m_modifier: {fileID: 0}
   m_remaining_resources: 
-  m_rocket: {fileID: 0}
+  m_rocket: {fileID: 1810926690}
   m_win_mission: {fileID: 0}
   m_waiting_for_players: 0
 --- !u!114 &1627268631
@@ -941,6 +941,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7818760902953425676, guid: 5cfa460c3a6c52f42abbc35e3ae416cb, type: 3}
   m_PrefabInstance: {fileID: 1810926688}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1810926690 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1139557292, guid: 5cfa460c3a6c52f42abbc35e3ae416cb, type: 3}
+  m_PrefabInstance: {fileID: 1810926688}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71e3561b7f3c3444eb8acdcc54c421c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1818471538
 GameObject:
   m_ObjectHideFlags: 0

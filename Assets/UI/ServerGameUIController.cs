@@ -130,6 +130,19 @@ public class ServerGameUIController : MonoBehaviour
         decisionsList.RefreshItems();
     }
 
+    public void UpdateGameEnd(bool won)
+    {
+        roundLabel.text = "Game Finished!";
+        if (won)
+        {
+            eventLabel.text = "Team Won!";
+        }
+        else
+        {
+            eventLabel.text = "Team Lost!";
+        }
+    }
+
     void Update()
     {
 

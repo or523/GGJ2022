@@ -160,4 +160,17 @@ public class PlayerUIController : MonoBehaviour
         NetworkPlayer.LocalInstance.UpdatePlayerDecisionServerRPC(
             decision.m_decision_id, NetworkPlayer.LocalInstance.playerResource.Value, decision.m_is_selected);
     }
+
+    public void UpdatePlayerWon(bool won)
+    {
+        playerReadyButton.SetEnabled(false);
+        if (won)
+        {
+            playerReadyButton.text = "You Lost!";
+        }
+        else
+        {
+            playerReadyButton.text = "You Won!";
+        }
+    }
 }

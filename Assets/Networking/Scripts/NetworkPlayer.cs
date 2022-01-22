@@ -138,7 +138,6 @@ public class NetworkPlayer : NetworkBehaviour
         }
 
         Debug.Log("Player notified - won = " + won);
-
-        // TODO - display this visually
+        GameObject.FindGameObjectWithTag("UIManager").GetComponent<PlayerUIController>().UpdatePlayerWon(won);
     }
 }

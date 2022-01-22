@@ -14,7 +14,8 @@ public enum GameState
     PlayersMove,
     WorldEvent,
     TurnEnd,
-    GameEnd
+    GameEnd,
+    GameFinished
 };
 
 public class GameManager : MonoBehaviour
@@ -164,6 +165,10 @@ public class GameManager : MonoBehaviour
             case GameState.GameEnd:
                 // check if should end game, and end it if so need be
                 EndGame();
+                m_gameState = GameState.GameFinished;
+                break;
+
+            case GameState.GameFinished:
                 break;
 
             default:
@@ -356,8 +361,7 @@ public class GameManager : MonoBehaviour
 
     public void DisplayPlayerResult(GameObject player, bool won)
     {
-        // TODO - display on server
-
+        ServerGameUIController.Instance.UpdateGameEnd(won);
         // Display on player controller
         NotifyPlayerResult(player, won);
     }
