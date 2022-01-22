@@ -97,15 +97,15 @@ MonoBehaviour:
   m_producer: {fileID: 0}
   m_level: 0
   m_level_requirments:
-  - m_energy: 0
-    m_food: 0
-    m_workforce: 0
-    m_wood: 0
-    m_minerals: 0
-  - m_energy: 0
-    m_food: 0
-    m_workforce: 0
-    m_wood: 0
-    m_minerals: 0
+  - m_energy: 8
+    m_food: 8
+    m_workforce: 3
+    m_wood: 4
+    m_minerals: 4
+  - m_energy: 16
+    m_food: 16
+    m_workforce: 6
+    m_wood: 8
+    m_minerals: 8
   m_renderer: {fileID: 0}
   m_sprites: []
