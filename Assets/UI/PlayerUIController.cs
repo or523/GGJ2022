@@ -105,6 +105,8 @@ public class PlayerUIController : MonoBehaviour
         bool state = (bool)btn.userData;
         
         NetworkPlayer.LocalInstance.UpdatePlayerIsReadyServerRPC(!state);
+
+        AudioManager.Instance.PlayMeme();
     }
 
     public void UpdatePlayerReadyButton(bool state)
@@ -143,6 +145,8 @@ public class PlayerUIController : MonoBehaviour
     {
         Button button = tab.target as Button;
         Decision decision = button.userData as Decision;
+
+        AudioManager.Instance.PlaySFX(NetworkPlayer.LocalInstance.playerResource.Value);
 
         // TODO: change button color / stamp
         decision.m_is_selected = !decision.m_is_selected;

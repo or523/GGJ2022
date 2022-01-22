@@ -12,6 +12,12 @@ public class AudioManager : MonoBehaviour
     public AudioClip m_good_event_clip;
     public AudioClip m_bad_event_clip;
 
+    // ordered by ResourceType
+    public AudioClip[] m_sfx;
+
+    // for the memes
+    public AudioClip m_human_sfx;
+
     [HideInInspector]
     public AudioSource m_audio;
 
@@ -65,5 +71,20 @@ public class AudioManager : MonoBehaviour
             yield return new WaitForSeconds(m_audio.clip.length);
             PlayAmbience();
         }
+    }
+
+    // only for clients
+    public void PlaySFX(ResourceType type)
+    {
+        m_audio.clip = m_sfx[(int) type];
+        m_audio.loop = false;
+        m_audio.Play();
+    }
+
+    public void PlayMeme()
+    {
+        m_audio.clip = m_human_sfx;
+        m_audio.loop = false;
+        m_audio.Play();
     }
 }

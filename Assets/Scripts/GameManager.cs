@@ -19,6 +19,7 @@ public enum GameState
 
 public class GameManager : MonoBehaviour
 {
+    // ordered by ResourceType
     // stores all buildings - the index is used as ID for selecting the building
     public BuildingBehaviour[] m_buildings;
 
