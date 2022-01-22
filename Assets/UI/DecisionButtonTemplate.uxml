@@ -1,0 +1,4 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/PlayerMenu.uss?fileID=7433441132597879392&amp;guid=8463153f89b2f6e4fb858b5dce1545f0&amp;type=3#PlayerMenu" />
+    <ui:Button text="Decision Button" display-tooltip-when-elided="true" style="width: 90%; height: 15%; font-size: 60%; white-space: normal; margin-left: 3%; margin-right: 3%; margin-top: 3%; margin-bottom: 3%; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;" />
+</ui:UXML>
