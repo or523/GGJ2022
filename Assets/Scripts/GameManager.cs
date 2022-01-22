@@ -281,6 +281,16 @@ public class GameManager : MonoBehaviour
                 DisplayPlayerResult(player, false);
             }
         }
+
+        // play global sound depending on team victory
+        if (game_mission_done)
+        {
+            AudioManager.Instance.PlayGoodEventClip(false);
+        }
+        else
+        {
+            AudioManager.Instance.PlayBadEventClip(false);
+        }
     }
 
     public void DisplayPlayerResult(GameObject player, bool won)

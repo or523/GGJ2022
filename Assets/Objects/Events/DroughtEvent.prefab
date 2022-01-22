@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_type: 0
+  m_should_play_sound: 1
+  m_is_good_event: 0
   m_was_decision_made: 0
   m_required_resources:
     m_energy: 0
