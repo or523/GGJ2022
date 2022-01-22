@@ -1019,6 +1019,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerUI: {fileID: 9197481963319205126, guid: 8be2d482c9c817544803667e12153ecc, type: 3}
+  playerDecisionCard: {fileID: 9197481963319205126, guid: 5cc573a46535db24290db9354c412079, type: 3}
 --- !u!114 &1818471543
 MonoBehaviour:
   m_ObjectHideFlags: 0
