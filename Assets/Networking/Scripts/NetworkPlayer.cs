@@ -34,6 +34,11 @@ public class NetworkPlayer : NetworkBehaviour
 
     private void readyValueChanged(bool previousValue, bool newValue)
     {
+        if (!IsLocalPlayer)
+        {
+            return;
+        }
+
         if (previousValue == newValue)
         {
             return;
