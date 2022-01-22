@@ -28,6 +28,8 @@ public class MenuUIController : MonoBehaviour
     public VisualTreeAsset serverMenu;
     public VisualTreeAsset clientMenu;
 
+    public GameObject gameManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +45,7 @@ public class MenuUIController : MonoBehaviour
         mainMenuExit.clicked += ExitGame;
     }
 
+    // This is the server hosting menu
     public void SwitchToServerMenu()
     {
         GetComponent<UIDocument>().visualTreeAsset = serverMenu;
@@ -55,6 +58,7 @@ public class MenuUIController : MonoBehaviour
         startServerButton.clicked += startServerButtonPressed;
     }
 
+    // This is the client connection menu
     public void SwitchToClientMenu()
     {
         GetComponent<UIDocument>().visualTreeAsset = clientMenu;
@@ -92,7 +96,7 @@ public class MenuUIController : MonoBehaviour
     void Update()
     {
         // Update player count
-        if (serverPlayerCountLabel != null)
+        if (serverPlayerCountLabel != null && GameManager.Instance != null)
         {
             serverPlayerCountLabel.text = string.Format(string.Format("{0} / 4 Players", GameManager.Instance.PlayersCount));
         }
@@ -110,6 +114,13 @@ public class MenuUIController : MonoBehaviour
     public void SwitchToPlayerMenu()
     {
         gameObject.GetComponent<PlayerUIController>().enabled = true;
+        this.enabled = false;
+    }
+
+
+    public void SwitchToServerGameMenu()
+    {
+        gameObject.GetComponent<ServerGameUIController>().enabled = true;
         this.enabled = false;
     }
 }

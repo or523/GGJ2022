@@ -3,3 +3,11 @@ DecisionButton {
     height: 15%;
     width: 90%;
 }
+
+.resource-label {
+    font-size: 25px;
+}
+
+.decision-resource-label {
+    font-size: 17px;
+}

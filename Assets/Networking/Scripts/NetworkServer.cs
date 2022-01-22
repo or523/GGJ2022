@@ -51,10 +51,15 @@ public class NetworkServer : MonoBehaviour
 
     public void UpdateAllPlayersGameStarted()
     {
+        // Notify all players game started
         foreach (GameObject player in GetAllPlayersObjects())
         {
             player.GetComponent<NetworkPlayer>().StartGameClientRpc();
         }
+
+        // Change Server UI to game started
+        GameObject.FindGameObjectWithTag("UIManager").GetComponent<MenuUIController>().SwitchToServerGameMenu();
+        // TODO: show island & building
     }
 
     public void UpdateAllPlayersDecisions(List<Decision> decisions)
