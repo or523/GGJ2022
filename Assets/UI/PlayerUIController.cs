@@ -21,6 +21,11 @@ public class PlayerUIController : MonoBehaviour
 
     public VisualTreeAsset playerDecisionCard;
 
+    public Sprite energyToggle;
+    public Sprite mineralsToggle;
+    public Sprite foodToggle;
+    public Sprite woodToggle;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -67,11 +72,11 @@ public class PlayerUIController : MonoBehaviour
             Label resourceWoodLabel = card.Q<Label>("wood-resource");
             Label resourceWorkforceLabel = card.Q<Label>("workforce-resource");
 
-            resourceEnergyLabel.text = string.Format("{0} En", decision.m_resources_needed.m_energy);
-            resourceMineralsLabel.text = string.Format("{0} Mi", decision.m_resources_needed.m_minerals);
-            resourceFoodLabel.text = string.Format("{0} Fo", decision.m_resources_needed.m_food);
-            resourceWoodLabel.text = string.Format("{0} Wo", decision.m_resources_needed.m_wood);
-            resourceWorkforceLabel.text = string.Format("{0} Po", decision.m_resources_needed.m_workforce);
+            resourceEnergyLabel.text = string.Format("{0}", decision.m_resources_needed.m_energy);
+            resourceMineralsLabel.text = string.Format("{0}", decision.m_resources_needed.m_minerals);
+            resourceFoodLabel.text = string.Format("{0}", decision.m_resources_needed.m_food);
+            resourceWoodLabel.text = string.Format("{0}", decision.m_resources_needed.m_wood);
+            resourceWorkforceLabel.text = string.Format("{0}", decision.m_resources_needed.m_workforce);
 
             // Decision label (TODO: fix ToString)
             Label decisionLabel = card.Q<Label>("decision-description");
@@ -86,6 +91,22 @@ public class PlayerUIController : MonoBehaviour
             else
             {
                 decision_toggle.style.unityBackgroundImageTintColor = new StyleColor(new Color(1f, 1f, 1f, 0f));
+            }
+            
+            switch (NetworkPlayer.LocalInstance.playerResource.Value)
+            {
+                case ResourceType.Energy:
+                    decision_toggle.style.backgroundImage = new StyleBackground(energyToggle.texture);
+                    break;
+                case ResourceType.Food:
+                    decision_toggle.style.backgroundImage = new StyleBackground(foodToggle.texture);
+                    break;
+                case ResourceType.Minerals:
+                    decision_toggle.style.backgroundImage = new StyleBackground(mineralsToggle.texture);
+                    break;
+                case ResourceType.Wood:
+                    decision_toggle.style.backgroundImage = new StyleBackground(woodToggle.texture);
+                    break;
             }
         };
 
@@ -163,5 +184,18 @@ public class PlayerUIController : MonoBehaviour
 
         NetworkPlayer.LocalInstance.UpdatePlayerDecisionServerRPC(
             decision.m_decision_id, NetworkPlayer.LocalInstance.playerResource.Value, decision.m_is_selected);
+    }
+
+    public void UpdatePlayerWon(bool won)
+    {
+        playerReadyButton.SetEnabled(false);
+        if (won)
+        {
+            playerReadyButton.text = "You Lost!";
+        }
+        else
+        {
+            playerReadyButton.text = "You Won!";
+        }
     }
 }

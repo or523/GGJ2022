@@ -86,11 +86,11 @@ public class ServerGameUIController : MonoBehaviour
             Label resourceWoodLabel = card.Q<Label>("wood-resource");
             Label resourceWorkforceLabel = card.Q<Label>("workforce-resource");
 
-            resourceEnergyLabel.text = string.Format("{0} En", decision.m_resources_needed.m_energy);
-            resourceMineralsLabel.text = string.Format("{0} Mi", decision.m_resources_needed.m_minerals);
-            resourceFoodLabel.text = string.Format("{0} Fo", decision.m_resources_needed.m_food);
-            resourceWoodLabel.text = string.Format("{0} Wo", decision.m_resources_needed.m_wood);
-            resourceWorkforceLabel.text = string.Format("{0} Po", decision.m_resources_needed.m_workforce);
+            resourceEnergyLabel.text = string.Format("{0}", decision.m_resources_needed.m_energy);
+            resourceMineralsLabel.text = string.Format("{0}", decision.m_resources_needed.m_minerals);
+            resourceFoodLabel.text = string.Format("{0}", decision.m_resources_needed.m_food);
+            resourceWoodLabel.text = string.Format("{0}", decision.m_resources_needed.m_wood);
+            resourceWorkforceLabel.text = string.Format("{0}", decision.m_resources_needed.m_workforce);
 
             // Decision label (TODO: fix ToString)
             Label decisionLabel = card.Q<Label>("decision-description");
@@ -105,11 +105,11 @@ public class ServerGameUIController : MonoBehaviour
 
     public void UpdateResourceCounts()
     {
-        resourceEnergyLabel.text = string.Format("{0} En", ResourceManagerBehaviour.Instance.m_resources.m_energy);
-        resourceMineralsLabel.text = string.Format("{0} Mi", ResourceManagerBehaviour.Instance.m_resources.m_minerals);
-        resourceFoodLabel.text = string.Format("{0} Fo", ResourceManagerBehaviour.Instance.m_resources.m_food);
-        resourceWoodLabel.text = string.Format("{0} Wo", ResourceManagerBehaviour.Instance.m_resources.m_wood);
-        resourceWorkforceLabel.text = string.Format("{0} Po", ResourceManagerBehaviour.Instance.m_resources.m_workforce);
+        resourceEnergyLabel.text = string.Format("{0}", ResourceManagerBehaviour.Instance.m_resources.m_energy);
+        resourceMineralsLabel.text = string.Format("{0}", ResourceManagerBehaviour.Instance.m_resources.m_minerals);
+        resourceFoodLabel.text = string.Format("{0}", ResourceManagerBehaviour.Instance.m_resources.m_food);
+        resourceWoodLabel.text = string.Format("{0}", ResourceManagerBehaviour.Instance.m_resources.m_wood);
+        resourceWorkforceLabel.text = string.Format("{0}", ResourceManagerBehaviour.Instance.m_resources.m_workforce);
     }
 
     public void UpdateRoundCount()
@@ -128,6 +128,19 @@ public class ServerGameUIController : MonoBehaviour
         m_decisions.Clear();
         m_decisions.AddRange(decisions);
         decisionsList.RefreshItems();
+    }
+
+    public void UpdateGameEnd(bool won)
+    {
+        roundLabel.text = "Game Finished!";
+        if (won)
+        {
+            eventLabel.text = "Team Won!";
+        }
+        else
+        {
+            eventLabel.text = "Team Lost!";
+        }
     }
 
     void Update()

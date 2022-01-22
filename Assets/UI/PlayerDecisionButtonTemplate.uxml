@@ -1,17 +1,32 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/PlayerMenu.uss?fileID=7433441132597879392&amp;guid=8463153f89b2f6e4fb858b5dce1545f0&amp;type=3#PlayerMenu" />
     <ui:VisualElement name="decision-card" style="background-image: url(&apos;project://database/Assets/UI/Sprites/task_border.png?fileID=21300000&amp;guid=7700b5d1eed357146aa3cac4ee7770b7&amp;type=3#task_border&apos;); width: 450px; height: 190px; flex-direction: row; align-items: center; justify-content: space-around;">
-        <ui:VisualElement name="decision-toggle" style="width: 120px; height: 120px; margin-left: 20px; background-image: url(&apos;project://database/Assets/UI/Sprites/secret2.png?fileID=21300000&amp;guid=05b296cd4076b7c4abdc6459996ab5ee&amp;type=3#secret2&apos;); background-color: rgba(0, 0, 0, 0); -unity-background-image-tint-color: rgb(255, 255, 255);" />
+        <ui:VisualElement name="decision-toggle" style="width: 120px; height: 120px; margin-left: 0; background-image: url(&apos;project://database/Assets/UI/Sprites/secret2.png?fileID=21300000&amp;guid=05b296cd4076b7c4abdc6459996ab5ee&amp;type=3#secret2&apos;); background-color: rgba(0, 0, 0, 0); -unity-background-image-tint-color: rgb(255, 255, 255); position: relative; left: 30px;" />
         <ui:Button display-tooltip-when-elided="true" name="decision-button" enable-rich-text="true" style="width: 70%; height: 100%; background-image: url(&apos;project://database/Assets/UI/Sprites/task_border.png?fileID=21300000&amp;guid=7700b5d1eed357146aa3cac4ee7770b7&amp;type=3#task_border&apos;); background-color: rgba(188, 188, 188, 0); -unity-background-image-tint-color: rgba(255, 255, 255, 0); border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; align-items: stretch; justify-content: flex-end; padding-left: 8px; padding-right: 8px;">
             <ui:VisualElement style="width: 100%; height: 50%; align-items: center; justify-content: center; padding-left: 10%; padding-right: 10%; padding-top: 10px; padding-bottom: 5px;">
                 <ui:Label text="Farm: 1 -&gt; 2" display-tooltip-when-elided="true" name="decision-description" style="font-size: 24%; -unity-font-style: bold; -unity-text-align: upper-center; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;" />
             </ui:VisualElement>
-            <ui:VisualElement name="decision-resources" style="flex-direction: row; width: 100%; height: 50%; align-items: center; justify-content: space-around; padding-left: 10%; padding-right: 10%; padding-bottom: 5%; padding-top: 5px;">
-                <ui:Label text="Label" display-tooltip-when-elided="true" name="energy-resource" class="decision-resource-label" />
-                <ui:Label text="Label" display-tooltip-when-elided="true" name="minerals-resource" class="decision-resource-label" />
-                <ui:Label text="Label" display-tooltip-when-elided="true" name="wood-resource" class="decision-resource-label" />
-                <ui:Label text="Label" display-tooltip-when-elided="true" name="food-resource" class="decision-resource-label" />
-                <ui:Label text="Label" display-tooltip-when-elided="true" name="workforce-resource" class="decision-resource-label" />
+            <ui:VisualElement name="decision-resources" style="flex-direction: row; width: 100%; height: 50%; align-items: center; justify-content: space-around; padding-left: 7%; padding-right: 7%; padding-bottom: 5%; padding-top: 5px;">
+                <ui:VisualElement style="align-items: center; justify-content: space-between;">
+                    <ui:Label text="Label" display-tooltip-when-elided="true" name="energy-resource" class="decision-resource-label" />
+                    <ui:VisualElement style="background-image: url(&apos;project://database/Assets/UI/Icons/elec_55px.png?fileID=2800000&amp;guid=2a079eb7537514a4a86e067e52842244&amp;type=3#elec_55px&apos;); width: 45px; height: 45px;" />
+                </ui:VisualElement>
+                <ui:VisualElement style="align-items: center; justify-content: space-between;">
+                    <ui:Label text="Label" display-tooltip-when-elided="true" name="minerals-resource" class="decision-resource-label" />
+                    <ui:VisualElement style="background-image: url(&apos;project://database/Assets/UI/Icons/metal_55px.png?fileID=2800000&amp;guid=3e5378ecf191d814f995e82f7e9ba3db&amp;type=3#metal_55px&apos;); width: 45px; height: 45px;" />
+                </ui:VisualElement>
+                <ui:VisualElement style="align-items: center; justify-content: space-between;">
+                    <ui:Label text="Label" display-tooltip-when-elided="true" name="wood-resource" class="decision-resource-label" />
+                    <ui:VisualElement style="background-image: url(&apos;project://database/Assets/UI/Icons/wood_55px.png?fileID=2800000&amp;guid=f2bc184c73ac0b441ad46d720f35dd02&amp;type=3#wood_55px&apos;); width: 45px; height: 45px;" />
+                </ui:VisualElement>
+                <ui:VisualElement style="align-items: center; justify-content: space-between;">
+                    <ui:Label text="Label" display-tooltip-when-elided="true" name="food-resource" class="decision-resource-label" />
+                    <ui:VisualElement style="background-image: url(&apos;project://database/Assets/UI/Icons/food_55px.png?fileID=2800000&amp;guid=2dd450ccc6b421a4aa30bf702abeead6&amp;type=3#food_55px&apos;); width: 45px; height: 45px;" />
+                </ui:VisualElement>
+                <ui:VisualElement style="align-items: center; justify-content: space-between;">
+                    <ui:Label text="Label" display-tooltip-when-elided="true" name="workforce-resource" class="decision-resource-label" />
+                    <ui:VisualElement style="background-image: resource(&apos;Sprites/island_big_FLAT&apos;); width: 45px; height: 45px;" />
+                </ui:VisualElement>
             </ui:VisualElement>
         </ui:Button>
     </ui:VisualElement>
