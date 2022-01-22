@@ -46,9 +46,6 @@ public class GameManager : MonoBehaviour
 
     public ConsumerProducerBehaviour m_modifier;
 
-    // mission templates
-    public Mission[] m_mission_templates;
-
     public List<ResourceType> m_remaining_resources;
 
     void Awake()
@@ -289,8 +286,10 @@ public class GameManager : MonoBehaviour
 
     public void AddPlayer(ulong networkId, GameObject playerObject)
     {
+        // Add to player list
         m_players.Add(networkId, playerObject);
 
+        // Assign player resource
         System.Random random = new System.Random();
         int resource_index = random.Next(0, m_remaining_resources.Count);
         
@@ -298,6 +297,33 @@ public class GameManager : MonoBehaviour
         m_remaining_resources.RemoveAt(resource_index);
 
         playerObject.GetComponent<NetworkPlayer>().playerResource.Value = player_resource;
+
+        // Assign player mission
+        Mission player_mission = new Mission();
+
+        // TODO: randomize all the other fields of missions
+        const int NUM_MISSIONS = 3;
+        int mission_index = random.Next(0, NUM_MISSIONS);
+        switch (mission_index)
+        {
+            case 0:
+                player_mission.missionType = MissionType.AllTimeResourceMission;
+                player_mission.m_type = player_resource;
+                break;
+
+            case 1:
+                player_mission.missionType = MissionType.BuildingMission;
+                player_mission.m_type = player_resource;
+                break;
+
+            case 2:
+                player_mission.missionType = MissionType.GlobalResourceMission;
+                player_mission.m_type = player_resource;
+                break;
+        }
+
+        playerObject.GetComponent<NetworkPlayer>().playerMission = player_mission;
+        playerObject.GetComponent<NetworkPlayer>().UpdatePlayerMissionClientRpc(player_mission);
     }
 
     public bool CanPlayersReady(bool is_ready)

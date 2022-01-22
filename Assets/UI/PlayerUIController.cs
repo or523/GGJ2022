@@ -73,6 +73,9 @@ public class PlayerUIController : MonoBehaviour
         playerDecisionsListView.bindItem = bindItem;
         playerDecisionsListView.itemsSource = m_decisions;
         playerDecisionsListView.selectionType = SelectionType.None;
+
+        // Secret mission text
+        playerSecretMissionsLabel.text = NetworkPlayer.LocalInstance.playerMission.ToString();
     }
 
     public void PlayerReadyButtonClicked(EventBase tab)
@@ -109,6 +112,11 @@ public class PlayerUIController : MonoBehaviour
         m_decisions.Clear();
         m_decisions.AddRange(decisions);
         playerDecisionsListView.RefreshItems();
+    }
+
+    internal void UpdatePlayerMission(Mission playerMission)
+    {
+        playerSecretMissionsLabel.text = playerMission.ToString();
     }
 
     public void PlayerDecisionButtonClicked(EventBase tab)

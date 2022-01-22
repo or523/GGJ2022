@@ -5,11 +5,11 @@
             <ui:ListView focusable="true" name="decisions-list" style="height: 70%; width: 80%;" />
         </ui:VisualElement>
         <ui:VisualElement style="height: 95%; width: 45%; justify-content: space-around;">
-            <ui:VisualElement style="width: 100%; height: 50%;">
-                <ui:Button text="Ready?" display-tooltip-when-elided="true" name="ready-button" style="height: 127px; -unity-font-style: bold; font-size: 30px;" />
+            <ui:VisualElement style="width: 100%; height: 50%; justify-content: space-around; align-items: center;">
+                <ui:Button text="Ready?" display-tooltip-when-elided="true" name="ready-button" style="height: 75%; -unity-font-style: bold; font-size: 30px; width: 90%; align-items: flex-end; justify-content: center;" />
             </ui:VisualElement>
             <ui:VisualElement style="width: 100%; height: 50%; background-image: url(&apos;project://database/Assets/UI/Sprites/secret2.png?fileID=2800000&amp;guid=05b296cd4076b7c4abdc6459996ab5ee&amp;type=3#secret2&apos;);">
-                <ui:Foldout text="View Secret Mission" name="secret-missions-foldout" value="true" style="-unity-font-style: bold; justify-content: flex-start;">
+                <ui:Foldout text="View Secret Mission!" name="secret-missions-foldout" value="false" style="-unity-font-style: bold; justify-content: flex-start; margin-left: 4%; margin-right: 4%; margin-top: 4%; margin-bottom: 4%;">
                     <ui:Label text="Your secret mission ..." display-tooltip-when-elided="true" name="secret-mission-text" style="height: auto; width: 85%; white-space: normal;" />
                 </ui:Foldout>
             </ui:VisualElement>

@@ -11,6 +11,7 @@ public class NetworkPlayer : NetworkBehaviour
     public static NetworkPlayer LocalInstance = null;
     public NetworkVariable<bool> isReady = new NetworkVariable<bool>(false);
     public NetworkVariable<ResourceType> playerResource = new NetworkVariable<ResourceType>(ResourceType.InvalidResource);
+    public Mission playerMission;
 
     // Start is called before the first frame update
     void Start()
@@ -103,5 +104,17 @@ public class NetworkPlayer : NetworkBehaviour
         {
             this.isReady.Value = is_ready;
         }
+    }
+
+    [ClientRpc]
+    public void UpdatePlayerMissionClientRpc(Mission mission)
+    {
+        // We don't want server to get this updates
+        if (IsServer || !IsLocalPlayer)
+        {
+            return;
+        }
+
+        playerMission = mission;
     }
 }

@@ -432,9 +432,12 @@ MonoBehaviour:
   m_nop_event: {fileID: 11400000, guid: 062ef38c48c8568459826135e690001a, type: 2}
   m_gameState: 0
   max_turns: 12
-  m_modifier:
-    m_PersistentCalls:
-      m_Calls: []
+  m_modifier: {fileID: 0}
+  m_mission_templates:
+  - {fileID: 11400000, guid: c2fe7d85352bd7449b41a7e44b2f1b58, type: 2}
+  - {fileID: 11400000, guid: b4a554609115c6d479da74812dcb9b63, type: 2}
+  - {fileID: 11400000, guid: b28458f5368c45e43a631b6066ff0af2, type: 2}
+  m_remaining_resources: 
 --- !u!114 &1955986774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -448,6 +451,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_resources:
+    m_energy: 0
+    m_food: 0
+    m_workforce: 0
+    m_wood: 0
+    m_minerals: 0
+  m_alltime_total:
     m_energy: 0
     m_food: 0
     m_workforce: 0
