@@ -7,9 +7,9 @@ public enum ResourceType
 {
     Energy = 0,
     Food,
-    Workforce,
     Wood,
     Minerals,
+    Workforce,
     InvalidResource
 }
 

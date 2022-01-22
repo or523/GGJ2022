@@ -22,6 +22,8 @@ public class Decision : INetworkSerializable
 
     public DecisionType m_type;    
 
+    public String       m_display_string = "";
+
     public Decision()
     {
         m_type                  = DecisionType.Uninitialized;
@@ -29,6 +31,7 @@ public class Decision : INetworkSerializable
         m_resources_needed      = new Resources();
         m_resources_allocated   = new Resources();
         m_is_selected           = false;
+        m_display_string        = "Decision";
     }    
 
     public void Select(ResourceType type)
@@ -85,6 +88,12 @@ public class Decision : INetworkSerializable
         m_resources_allocated.NetworkSerialize(serializer);
         serializer.SerializeValue(ref m_is_selected);
         serializer.SerializeValue(ref m_type);
+        serializer.SerializeValue(ref m_display_string);
+    }
+
+    public override string ToString()
+    {
+        return m_display_string;
     }
 }
 
@@ -98,6 +107,8 @@ public class BuildingDecision : Decision
         m_decision_id       = id;
         m_resources_needed  = building.GetRequiredResourcesForUpgrade();
         m_building          = building;
+
+        m_display_string    = "Upgrade " + m_building.ToString()  + "\r\nto level " + (m_building.m_level + 1);
     }
 
     public override void ApplyDecision()
@@ -121,10 +132,15 @@ public class BuildingDecision : Decision
         }
     }
 
-    public override void NetworkSerialize<T>(BufferSerializer<T> serializer)
+    // public override void NetworkSerialize<T>(BufferSerializer<T> serializer)
+    // {
+    //     base.NetworkSerialize(serializer);
+    //     m_building.NetworkSerialize(serializer);
+    // }
+
+    public override string ToString()
     {
-        base.NetworkSerialize(serializer);
-        m_building.NetworkSerialize(serializer);
+        return m_display_string;
     }
 }
 
@@ -139,6 +155,8 @@ public class EventDecision : Decision
         m_decision_id       = id;
         m_resources_needed  = world_event.GetRequiredResources();
         m_event             = world_event;
+
+        m_display_string    = world_event.m_display_string + "\r\n" + world_event.m_auxilary_string;
     }
 
     public override void ApplyDecision()
@@ -162,9 +180,14 @@ public class EventDecision : Decision
         }
     }
 
-    public override void NetworkSerialize<T>(BufferSerializer<T> serializer)
+    // public override void NetworkSerialize<T>(BufferSerializer<T> serializer)
+    // {
+    //     base.NetworkSerialize(serializer);
+    //     m_event.NetworkSerialize(serializer);
+    // }
+
+    public override string ToString()
     {
-        base.NetworkSerialize(serializer);
-        m_event.NetworkSerialize(serializer);
+        return m_display_string;
     }
 }

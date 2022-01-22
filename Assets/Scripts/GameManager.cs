@@ -20,7 +20,6 @@ public enum GameState
 public class GameManager : MonoBehaviour
 {
     // stores all buildings - the index is used as ID for selecting the building
-    [HideInInspector]
     public BuildingBehaviour[] m_buildings;
 
     public int m_turn_counter;
@@ -71,7 +70,6 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        m_buildings = GameObject.FindObjectsOfType<BuildingBehaviour>();
         m_remaining_resources = new List<ResourceType> { ResourceType.Energy, ResourceType.Food, ResourceType.Minerals, ResourceType.Wood };
 
         int num_events_to_pad = max_turns - m_events.Length;
@@ -427,6 +425,8 @@ public class GameManager : MonoBehaviour
             case 1:
                 player_mission.missionType = MissionType.BuildingMission;
                 player_mission.m_type = player_resource;
+                player_mission.m_building = m_buildings[(int) player_resource];
+                player_mission.m_building_name = player_mission.m_building.m_name;
                 break;
 
             case 2:
@@ -434,6 +434,8 @@ public class GameManager : MonoBehaviour
                 player_mission.m_type = player_resource;
                 break;
         }
+
+        player_mission.SetDisplayString();
 
         playerObject.GetComponent<NetworkPlayer>().playerMission = player_mission;
         playerObject.GetComponent<NetworkPlayer>().UpdatePlayerMissionClientRpc(player_mission);

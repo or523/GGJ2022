@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_type: 0
+  m_display_string: Drought
+  m_auxilary_string: Divert work to farms
   m_was_decision_made: 0
   m_required_resources:
     m_energy: 20

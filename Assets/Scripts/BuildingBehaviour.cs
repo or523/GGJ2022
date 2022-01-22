@@ -8,6 +8,8 @@ using System;
 
 public class BuildingBehaviour : MonoBehaviour, INetworkSerializable
 {
+    public String m_name = "";
+
     [HideInInspector]
     public ConsumerProducerBehaviour m_producer;
 
@@ -25,6 +27,8 @@ public class BuildingBehaviour : MonoBehaviour, INetworkSerializable
     // Start is called before the first frame update
     public void Start()
     {
+        m_name = gameObject.name;
+
         m_renderer = GetComponent<SpriteRenderer>();
         m_producer = GetComponent<ConsumerProducerBehaviour>();
 
@@ -69,6 +73,11 @@ public class BuildingBehaviour : MonoBehaviour, INetworkSerializable
 
     public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
     {
-        // TODO - serialize anything?
+        serializer.SerializeValue(ref m_name);
+    }
+
+    public override string ToString()
+    {
+        return m_name;
     }
 }

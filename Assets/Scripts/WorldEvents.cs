@@ -4,6 +4,8 @@ using UnityEngine;
 
 using Unity.Netcode;
 
+using System;
+
 public enum EventType
 {
     Decision = 0,
@@ -15,12 +17,22 @@ public abstract class WorldEvent : MonoBehaviour, INetworkSerializable
 {
     public EventType m_type;
 
+    public String m_display_string = "";
+    public String m_auxilary_string = "";
+
     // Event resolved - apply results to the world
     public abstract void ApplyEvent();
 
     public virtual void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
     {
         serializer.SerializeValue(ref m_type);
+        serializer.SerializeValue(ref m_display_string);
+        serializer.SerializeValue(ref m_auxilary_string);
+    }
+
+    public override string ToString()
+    {
+        return m_display_string;
     }
 }
 
