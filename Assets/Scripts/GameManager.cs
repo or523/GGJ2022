@@ -127,6 +127,8 @@ public class GameManager : MonoBehaviour
                 // let the players make their move
                 if (AreAllPlayersReady())
                 {
+                    Debug.Log("Commiting decisions");
+
                     // commit decisions
                     foreach (Decision decision in m_decisions)
                     {

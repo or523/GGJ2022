@@ -44,6 +44,7 @@ public class BuildingBehaviour : MonoBehaviour, INetworkSerializable
     {
         if (CanUpgrade(resources))
         {
+            Debug.Log("Building upgraded!");
             resources -= m_level_requirments[m_level];
             ++m_level;
 

@@ -35,6 +35,8 @@ public class Decision : INetworkSerializable
     {
         m_is_selected = true;
 
+        Debug.Log("Selected = " + m_decision_id + " / resource = " + type);
+
         // update the global resource amount
         ResourceManagerBehaviour.Instance.UpdateByType(
             -m_resources_needed,
@@ -43,15 +45,19 @@ public class Decision : INetworkSerializable
 
         // update the amount allocated for the decision
         m_resources_allocated.UpdateByType(
-            -m_resources_needed,
+            m_resources_needed,
             type
         );
+
+        Debug.Log("Selected, Allocated = " + m_resources_allocated);
     }
 
     public void Unselect(ResourceType type)
     {
         m_is_selected = false;
 
+        Debug.Log("Unselected = " + m_decision_id + " / resource = " + type);
+
         // update the global resource amount
         ResourceManagerBehaviour.Instance.UpdateByType(
             m_resources_needed,
@@ -60,9 +66,11 @@ public class Decision : INetworkSerializable
 
         // update the amount allocated for the decision
         m_resources_allocated.UpdateByType(
-            m_resources_needed,
+            -m_resources_needed,
             type
         );
+
+        Debug.Log("Unselected, Allocated = " + m_resources_allocated);
     }
 
     public virtual void ApplyDecision()
@@ -94,16 +102,21 @@ public class BuildingDecision : Decision
 
     public override void ApplyDecision()
     {
+        Debug.Log("Allocated = " + m_resources_allocated);
+        Debug.Log("Needed = "    + m_resources_needed);
+
         if (m_resources_allocated >= m_resources_needed)
         {
             // resources were already updated in the global store
             // just do the decision
+            Debug.Log("Decision " + m_decision_id + " confirmed!");
             m_building.Upgrade(ref ResourceManagerBehaviour.Instance.m_resources);
         }
         else
         {
             // not enough for the decision to take affect
             // reimburse
+            Debug.Log("Decision " + m_decision_id + " declined!");
             ResourceManagerBehaviour.Instance.UpdateResources(m_resources_allocated);
         }
     }
