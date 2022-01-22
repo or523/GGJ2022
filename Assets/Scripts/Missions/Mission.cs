@@ -11,6 +11,7 @@ public enum MissionType
     GlobalResourceMission
 }
 
+[CreateAssetMenu(fileName = "Mission", menuName = "Scriptable Object/Mission")]
 public class Mission : ScriptableObject, INetworkSerializable
 {
     public MissionType missionType;

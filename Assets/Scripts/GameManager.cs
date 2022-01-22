@@ -48,6 +48,10 @@ public class GameManager : MonoBehaviour
 
     public List<ResourceType> m_remaining_resources;
 
+    // FTW condition
+    public BuildingBehaviour m_rocket;
+    public Mission m_win_mission;
+
     void Awake()
     {
         Instance = this;
@@ -55,12 +59,16 @@ public class GameManager : MonoBehaviour
         m_gameState = GameState.WaitingForPlayers;
 
         m_players = new Dictionary<ulong, GameObject>();
+
+        m_win_mission = new Mission {
+            missionType = MissionType.BuildingMission,
+            m_building  = m_rocket
+        };
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        m_players = new Dictionary<ulong, GameObject>();
         m_buildings = GameObject.FindObjectsOfType<BuildingBehaviour>();
         m_remaining_resources = new List<ResourceType> { ResourceType.Energy, ResourceType.Food, ResourceType.Minerals, ResourceType.Wood };
 
@@ -181,13 +189,13 @@ public class GameManager : MonoBehaviour
     {
         List<Decision> decisions = new List<Decision>();
 
-        // check what buildings are upgradable with the current resources
+        // check what buildings are upgradable
         // loop by index since we need the building ID
         int decision_id = 0;
         for (int id=0; id<m_buildings.Length; ++id)
         {
             BuildingBehaviour building = m_buildings[id];
-            if (building.CanUpgrade(ResourceManagerBehaviour.Instance.m_resources))
+            if (!building.IsMaxLevel())
             {
                 Decision decision = new BuildingDecision(decision_id, building);
                 decisions.Add(decision);
@@ -255,7 +263,37 @@ public class GameManager : MonoBehaviour
 
     public void EndGame()
     {
-        return;
+        // check which players won
+        bool game_mission_done   = m_win_mission.IsMissionDone();
+        bool player_mission_done = false;
+        foreach(KeyValuePair<ulong,GameObject> p in m_players)
+        {
+            GameObject player = p.Value;
+            player_mission_done = player.GetComponent<NetworkPlayer>().playerMission.IsMissionDone();
+            if (game_mission_done && player_mission_done)
+            {
+                Debug.Log("Player " + p.Key + " Won!");
+                DisplayPlayerResult(player, true);
+            }
+            else
+            {
+                Debug.Log("Player " + p.Key + " Lost!");
+                DisplayPlayerResult(player, false);
+            }
+        }
+    }
+
+    public void DisplayPlayerResult(GameObject player, bool won)
+    {
+        // TODO - display on server
+
+        // Display on player controller
+        NotifyPlayerResult(player, won);
+    }
+
+    public void NotifyPlayerResult(GameObject player, bool won)
+    {
+        player.GetComponent<NetworkPlayer>().NotifyPlayerWonClientRpc(won);
     }
 
     public static void Shuffle<T> (T[] array)

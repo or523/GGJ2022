@@ -166,6 +166,21 @@ public class Resources : INetworkSerializable
         m_minerals  = (m_minerals >= 0)  ? m_minerals   : 0;
     }
 
+    public void FixFractions()
+    {
+        m_energy    = Mathf.Floor(m_energy);
+        m_food      = Mathf.Floor(m_food);
+        m_workforce = Mathf.Floor(m_workforce);
+        m_wood      = Mathf.Floor(m_wood);
+        m_minerals  = Mathf.Floor(m_minerals);
+    }
+
+    public void Fix()
+    {
+        FixNegatives();
+        FixFractions();
+    }
+
     public bool isFeasible()
     {
         return this >= new Resources();
@@ -200,9 +215,7 @@ public class ResourceManagerBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Resources delta = new Resources(5, 5, 5, 5, 5);
-        UpdateResources(delta);
-        UpdateResources(-delta);
+        
     }
 
     // Update is called once per frame
@@ -215,10 +228,10 @@ public class ResourceManagerBehaviour : MonoBehaviour
     {
         // update the current resources
         m_resources += delta;
-        m_resources.FixNegatives();
+        m_resources.Fix();
         
         // update the totals - only take the positive values of delta
-        delta.FixNegatives();
+        delta.Fix();
         m_alltime_total += delta;
     }
 
@@ -226,10 +239,10 @@ public class ResourceManagerBehaviour : MonoBehaviour
     {
         // update the current resources
         m_resources.UpdateByType(value, type);
-        m_resources.FixNegatives();
+        m_resources.Fix();
 
         // update the totals - only take the positive values of delta
-        value.FixNegatives();
+        value.Fix();
         m_alltime_total.UpdateByType(value, type);
     }
 }

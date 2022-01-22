@@ -117,4 +117,18 @@ public class NetworkPlayer : NetworkBehaviour
 
         playerMission = mission;
     }
+
+    [ClientRpc]
+    public void NotifyPlayerWonClientRpc(bool won)
+    {
+        // We don't want server to get this updates
+        if (IsServer || !IsLocalPlayer)
+        {
+            return;
+        }
+
+        Debug.Log("Player notified - won = " + won);
+
+        // TODO - display this visually
+    }
 }
