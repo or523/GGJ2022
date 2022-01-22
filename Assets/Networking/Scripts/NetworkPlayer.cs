@@ -22,6 +22,11 @@ public class NetworkPlayer : NetworkBehaviour
         }
     }
 
+    public static bool IsRunningOnServer()
+    {
+        return (LocalInstance == null);
+    }
+
     private void OnEnable()
     {
         isReady.OnValueChanged += readyValueChanged;

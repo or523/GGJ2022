@@ -25,8 +25,6 @@ public class AudioManager : MonoBehaviour
     void Start()
     {
         m_audio = GetComponent<AudioSource>();
-
-        PlayAmbience();
     }
 
     // Update is called once per frame
@@ -37,9 +35,13 @@ public class AudioManager : MonoBehaviour
 
     public void PlayAmbience()
     {
-        m_audio.clip = m_ambience;
-        m_audio.loop = true;
-        m_audio.Play();
+        // play ambience only on server
+        if (NetworkPlayer.IsRunningOnServer())
+        {
+            m_audio.clip = m_ambience;
+            m_audio.loop = true;
+            m_audio.Play();
+        }
     }
 
     public IEnumerator PlayGoodEventClip(bool should_restore_ambience=true)
