@@ -128,6 +128,7 @@ public class GameManager : MonoBehaviour
                 if (AreAllPlayersReady())
                 {
                     // TODO: commit decisions
+                    SetAllPlayersToNotReady();
                     m_gameState = GameState.WorldEvent;
                 }
                 break;
@@ -222,6 +223,14 @@ public class GameManager : MonoBehaviour
             }
         }
         return true;
+    }
+
+    public void SetAllPlayersToNotReady()
+    {
+        foreach (KeyValuePair<ulong, GameObject> p in m_players)
+        {
+            p.Value.GetComponent<NetworkPlayer>().isReady.Value = false;
+        }
     }
 
     public void PublishDecision(Decision decision)
