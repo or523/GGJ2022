@@ -99,12 +99,12 @@ MonoBehaviour:
   m_level_requirments:
   - m_energy: 2
     m_food: 0
-    m_workforce: 8
+    m_workforce: 0
     m_wood: 6
     m_minerals: 10
   - m_energy: 4
     m_food: 0
-    m_workforce: 16
+    m_workforce: 0
     m_wood: 12
     m_minerals: 20
   m_renderer: {fileID: 0}
