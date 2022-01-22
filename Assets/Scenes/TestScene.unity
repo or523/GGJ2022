@@ -429,8 +429,12 @@ MonoBehaviour:
   m_buildings: []
   m_turn_counter: 0
   m_events: []
+  m_nop_event: {fileID: 11400000, guid: 062ef38c48c8568459826135e690001a, type: 2}
   m_gameState: 0
   max_turns: 12
+  m_modifier:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1955986774
 MonoBehaviour:
   m_ObjectHideFlags: 0

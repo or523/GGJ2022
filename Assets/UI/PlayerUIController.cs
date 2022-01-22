@@ -7,6 +7,17 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+public class DecisionButton : Button
+{
+    public Decision decision;
+    public bool isSelected;
+
+    public void flipSelection()
+    {
+        isSelected = !isSelected;
+    }
+}
+
 public class PlayerUIController : MonoBehaviour
 {
     // Components
@@ -31,34 +42,59 @@ public class PlayerUIController : MonoBehaviour
         playerSecretMissionsLabel = root.Q<Label>("secret-mission-text");
         playerDecisionsListView = root.Q<ListView>("decisions-list");
 
-        playerReadyButton.clicked += PlayerReadyButtonClicked;
+        playerReadyButton.clickable.clickedWithEventInfo += PlayerReadyButtonClicked;
+        playerReadyButton.userData = false;
 
         // ListView binding
         // The "makeItem" function will be called as needed
         // when the ListView needs more items to render
-        Func<VisualElement> makeItem = () => new Label();
+        Func<VisualElement> makeItem = () =>
+        {
+            DecisionButton button = new DecisionButton();
+            button.clickable.clickedWithEventInfo += PlayerDecisionButtonClicked;
+            return button;
+        };
 
         // As the user scrolls through the list, the ListView object
         // will recycle elements created by the "makeItem"
         // and invoke the "bindItem" callback to associate
         // the element with the matching data item (specified as an index in the list)
-        Action<VisualElement, int> bindItem = (e, i) => (e as Label).text = ("Decision:" + m_decisions[i].ToString());
+        Action<VisualElement, int> bindItem = (e, i) =>
+        {
+            DecisionButton button = e as DecisionButton;
+            button.decision = m_decisions[i];
+            button.isSelected = false;
+
+            // TODO: represent the decision graphically 
+            button.text = "[X] Decision - " + m_decisions[i].m_decision_id;
+        };
 
         playerDecisionsListView.makeItem = makeItem;
         playerDecisionsListView.bindItem = bindItem;
         playerDecisionsListView.itemsSource = m_decisions;
-        playerDecisionsListView.selectionType = SelectionType.Multiple;
-
-        // Callback invoked when the user double clicks an item
-        playerDecisionsListView.onItemsChosen += Debug.Log;
-
-        // Callback invoked when the user changes the selection inside the ListView
-        playerDecisionsListView.onSelectionChange += Debug.Log;
+        playerDecisionsListView.selectionType = SelectionType.None;
     }
 
-    public void PlayerReadyButtonClicked()
+    public void PlayerReadyButtonClicked(EventBase tab)
     {
+        Button btn = tab.target as Button;
 
+        bool state = (bool)btn.userData;
+        
+        NetworkPlayer.LocalInstance.UpdatePlayerIsReadyServerRPC(!state);
+    }
+
+    public void UpdatePlayerReadyButton(bool state)
+    {
+        playerReadyButton.userData = state;
+        if (state)
+        {
+            playerReadyButton.text = "Ready!";
+        }
+        else
+        {
+            playerReadyButton.text = "Ready?";
+        }
     }
 
     // Update is called once per frame
@@ -73,5 +109,25 @@ public class PlayerUIController : MonoBehaviour
         m_decisions.Clear();
         m_decisions.AddRange(decisions);
         playerDecisionsListView.RefreshItems();
+    }
+
+    public void PlayerDecisionButtonClicked(EventBase tab)
+    {
+        DecisionButton button = tab.target as DecisionButton;
+        Decision decision = button.decision;
+
+        // TODO: change button color
+        button.flipSelection();
+        if (button.isSelected)
+        {
+            button.text = "[V] Decision - " + decision.m_decision_id;
+        }
+        else
+        {
+            button.text = "[X] Decision - " + decision.m_decision_id;
+        }
+
+        NetworkPlayer.LocalInstance.UpdatePlayerDecisionServerRPC(
+            decision.m_decision_id, NetworkPlayer.LocalInstance.playerResource.Value, button.isSelected);
     }
 }

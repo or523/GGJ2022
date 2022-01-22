@@ -46,6 +46,8 @@ public class GameManager : MonoBehaviour
 
     public CalculationEvent m_modifier;
 
+    public List<ResourceType> m_remaining_resources;
+
     void Awake()
     {
         Instance = this;
@@ -60,6 +62,7 @@ public class GameManager : MonoBehaviour
     {
         m_players = new Dictionary<ulong, GameObject>();
         m_buildings = GameObject.FindObjectsOfType<BuildingBehaviour>();
+        m_remaining_resources = new List<ResourceType> { ResourceType.Energy, ResourceType.Food, ResourceType.Minerals, ResourceType.Wood };
 
         int num_events_to_pad = max_turns - m_events.Length;
         if (num_events_to_pad > 0)
@@ -276,9 +279,17 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void AddPlayer(ulong networkId, GameObject gameObject)
+    public void AddPlayer(ulong networkId, GameObject playerObject)
     {
-        m_players.Add(networkId, gameObject);
+        m_players.Add(networkId, playerObject);
+
+        System.Random random = new System.Random();
+        int resource_index = random.Next(0, m_remaining_resources.Count);
+        
+        ResourceType player_resource = m_remaining_resources[resource_index];
+        m_remaining_resources.RemoveAt(resource_index);
+
+        playerObject.GetComponent<NetworkPlayer>().playerResource.Value = player_resource;
     }
 
     public bool CanPlayersReady(bool is_ready)

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
@@ -8,7 +9,8 @@ using UnityEngine;
 public class NetworkPlayer : NetworkBehaviour
 {
     public static NetworkPlayer LocalInstance = null;
-    public NetworkVariable<bool> isReady;
+    public NetworkVariable<bool> isReady = new NetworkVariable<bool>(false);
+    public NetworkVariable<ResourceType> playerResource = new NetworkVariable<ResourceType>(ResourceType.InvalidResource);
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +19,21 @@ public class NetworkPlayer : NetworkBehaviour
         {
             // TODO: disable
         }
+    }
+
+    private void OnEnable()
+    {
+        isReady.OnValueChanged += readyValueChanged;
+    }
+
+    private void readyValueChanged(bool previousValue, bool newValue)
+    {
+        if (previousValue == newValue)
+        {
+            return;
+        }
+
+        GameObject.FindGameObjectWithTag("UIManager").GetComponent<PlayerUIController>().UpdatePlayerReadyButton(newValue);
     }
 
     // Update is called once per frame
@@ -65,7 +82,7 @@ public class NetworkPlayer : NetworkBehaviour
     }
 
     [ServerRpc]
-    void UpdatePlayerDecisionServerRPC(int decision_id, ResourceType resource, bool is_selected)
+    public void UpdatePlayerDecisionServerRPC(int decision_id, ResourceType resource, bool is_selected)
     {
         // We don't want players to get this update
         if (!IsServer)
@@ -73,12 +90,14 @@ public class NetworkPlayer : NetworkBehaviour
             return;
         }
 
+        Debug.Log(string.Format("Update player decision: {0} / {1} / {2}", decision_id, resource, is_selected));
+
         // Find GameManager and update its state
         GameManager.Instance.UpdateDecision(decision_id, resource, is_selected);
     }
 
     [ServerRpc]
-    void UpdatePlayerIsReadyServerRPC(bool is_ready)
+    public void UpdatePlayerIsReadyServerRPC(bool is_ready)
     {
         if (GameManager.Instance.CanPlayersReady(is_ready))
         {

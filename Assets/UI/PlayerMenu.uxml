@@ -5,10 +5,14 @@
             <ui:ListView focusable="true" name="decisions-list" style="height: 296px; width: 358px;" />
         </ui:VisualElement>
         <ui:VisualElement style="height: 348px; width: 274px; justify-content: space-around;">
-            <ui:Button text="Ready" display-tooltip-when-elided="true" name="ready-button" style="height: 127px; -unity-font-style: bold; font-size: 30px;" />
-            <ui:Foldout text="View Secret Mission" name="secret-missions-foldout" value="false" style="-unity-font-style: bold; justify-content: flex-start;">
-                <ui:Label text="Your secret mission ..." display-tooltip-when-elided="true" name="secret-mission-text" />
-            </ui:Foldout>
+            <ui:VisualElement style="width: 100%; height: 50%;">
+                <ui:Button text="Ready?" display-tooltip-when-elided="true" name="ready-button" style="height: 127px; -unity-font-style: bold; font-size: 30px;" />
+            </ui:VisualElement>
+            <ui:VisualElement style="width: 100%; height: 50%;">
+                <ui:Foldout text="View Secret Mission" name="secret-missions-foldout" value="false" style="-unity-font-style: bold; justify-content: flex-start;">
+                    <ui:Label text="Your secret mission ..." display-tooltip-when-elided="true" name="secret-mission-text" />
+                </ui:Foldout>
+            </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

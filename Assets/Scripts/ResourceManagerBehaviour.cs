@@ -9,7 +9,8 @@ public enum ResourceType
     Food,
     Workforce,
     Wood,
-    Minerals
+    Minerals,
+    InvalidResource
 }
 
 [System.Serializable]
