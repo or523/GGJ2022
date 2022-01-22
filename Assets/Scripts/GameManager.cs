@@ -425,6 +425,7 @@ public class GameManager : MonoBehaviour
             case 0:
                 player_mission.missionType = MissionType.AllTimeResourceMission;
                 player_mission.m_type = player_resource;
+                player_mission.m_value = 200;
                 break;
 
             case 1:
@@ -437,6 +438,7 @@ public class GameManager : MonoBehaviour
             case 2:
                 player_mission.missionType = MissionType.GlobalResourceMission;
                 player_mission.m_type = player_resource;
+                player_mission.m_value = 30;
                 break;
         }
 
