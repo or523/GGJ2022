@@ -69,12 +69,12 @@ public class DisplayManager : MonoBehaviour
     public void PlayAnimation()
     {
         m_is_playing = true;
-        m_time_since_frame = 0;
+        m_time_since_frame = m_frame_delay;
     }
 
     public void StopAnimation()
     {
         m_is_playing = false;
-        m_time_since_frame = 0;
+        m_time_since_frame = m_frame_delay;
     }
 }
