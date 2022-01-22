@@ -219,6 +219,7 @@ GameObject:
   - component: {fileID: 1818471539}
   - component: {fileID: 1818471541}
   - component: {fileID: 1818471542}
+  - component: {fileID: 1818471543}
   m_Layer: 5
   m_Name: UIDocument
   m_TagString: UIManager
@@ -285,6 +286,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerUI: {fileID: 9197481963319205126, guid: 8be2d482c9c817544803667e12153ecc, type: 3}
+--- !u!114 &1818471543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1818471538}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33ff01d7172702d4c844eda869e6c031, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serverGameUI: {fileID: 9197481963319205126, guid: f735e6799f740b14aa0857de685b0fa8, type: 3}
+  decisionCard: {fileID: 9197481963319205126, guid: cf98c4e742233534bbff6c03fc459757, type: 3}
 --- !u!1 &1925698599
 GameObject:
   m_ObjectHideFlags: 0
@@ -433,11 +448,9 @@ MonoBehaviour:
   m_gameState: 0
   max_turns: 12
   m_modifier: {fileID: 0}
-  m_mission_templates:
-  - {fileID: 11400000, guid: c2fe7d85352bd7449b41a7e44b2f1b58, type: 2}
-  - {fileID: 11400000, guid: b4a554609115c6d479da74812dcb9b63, type: 2}
-  - {fileID: 11400000, guid: b28458f5368c45e43a631b6066ff0af2, type: 2}
   m_remaining_resources: 
+  m_rocket: {fileID: 0}
+  m_win_mission: {fileID: 0}
 --- !u!114 &1955986774
 MonoBehaviour:
   m_ObjectHideFlags: 0

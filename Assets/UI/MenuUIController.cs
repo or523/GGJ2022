@@ -43,6 +43,7 @@ public class MenuUIController : MonoBehaviour
         mainMenuExit.clicked += ExitGame;
     }
 
+    // This is the server hosting menu
     public void SwitchToServerMenu()
     {
         GetComponent<UIDocument>().visualTreeAsset = serverMenu;
@@ -55,6 +56,7 @@ public class MenuUIController : MonoBehaviour
         startServerButton.clicked += startServerButtonPressed;
     }
 
+    // This is the client connection menu
     public void SwitchToClientMenu()
     {
         GetComponent<UIDocument>().visualTreeAsset = clientMenu;
@@ -110,6 +112,13 @@ public class MenuUIController : MonoBehaviour
     public void SwitchToPlayerMenu()
     {
         gameObject.GetComponent<PlayerUIController>().enabled = true;
+        this.enabled = false;
+    }
+
+
+    public void SwitchToServerGameMenu()
+    {
+        gameObject.GetComponent<ServerGameUIController>().enabled = true;
         this.enabled = false;
     }
 }

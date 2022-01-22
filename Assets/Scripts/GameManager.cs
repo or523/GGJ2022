@@ -182,6 +182,9 @@ public class GameManager : MonoBehaviour
 
         ResourceManagerBehaviour.Instance.UpdateResources(production);
 
+        // Update resource count
+        GameObject.FindGameObjectWithTag("UIManager").GetComponent<ServerGameUIController>().UpdateResourceCounts();
+
         return;
     }
 
@@ -204,6 +207,9 @@ public class GameManager : MonoBehaviour
         }
 
         PublishDecisions(decisions);
+
+        // Update Server Ui
+        ServerGameUIController.Instance.UpdateServerDecisions(decisions);
     }
 
     public bool AreAllPlayersReady()
@@ -252,6 +258,9 @@ public class GameManager : MonoBehaviour
                 Debug.Log("What are we doing here?");
                 break;
         }
+
+        // TODO: better represntation
+        ServerGameUIController.Instance.UpdateEvent(world_event.ToString());
         
         return;
     }
@@ -259,6 +268,7 @@ public class GameManager : MonoBehaviour
     public void CountTurns()
     {
         ++m_turn_counter;
+        ServerGameUIController.Instance.UpdateRoundCount();
     }
 
     public void EndGame()
@@ -320,6 +330,10 @@ public class GameManager : MonoBehaviour
         {
             m_decisions[decision_id].Unselect(resource);
         }
+
+        // Update resource UI
+        ServerGameUIController.Instance.UpdateResourceCounts();
+        ServerGameUIController.Instance.UpdateServerDecisions(m_decisions);
     }
 
     public void AddPlayer(ulong networkId, GameObject playerObject)
