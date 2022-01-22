@@ -8,9 +8,9 @@
             <ui:VisualElement style="width: 100%; height: 50%;">
                 <ui:Button text="Ready?" display-tooltip-when-elided="true" name="ready-button" style="height: 127px; -unity-font-style: bold; font-size: 30px;" />
             </ui:VisualElement>
-            <ui:VisualElement style="width: 100%; height: 50%; background-image: url(&apos;project://database/Assets/UI/Sprites/secret.png?fileID=2800000&amp;guid=77e4fbe6a5fc47a4b92048b1ee80f1e9&amp;type=3#secret&apos;);">
-                <ui:Foldout text="View Secret Mission" name="secret-missions-foldout" value="false" style="-unity-font-style: bold; justify-content: flex-start;">
-                    <ui:Label text="Your secret mission ..." display-tooltip-when-elided="true" name="secret-mission-text" />
+            <ui:VisualElement style="width: 100%; height: 50%; background-image: url(&apos;project://database/Assets/UI/Sprites/secret2.png?fileID=2800000&amp;guid=05b296cd4076b7c4abdc6459996ab5ee&amp;type=3#secret2&apos;);">
+                <ui:Foldout text="View Secret Mission" name="secret-missions-foldout" value="true" style="-unity-font-style: bold; justify-content: flex-start;">
+                    <ui:Label text="Your secret mission ..." display-tooltip-when-elided="true" name="secret-mission-text" style="height: auto; width: 85%; white-space: normal;" />
                 </ui:Foldout>
             </ui:VisualElement>
         </ui:VisualElement>
