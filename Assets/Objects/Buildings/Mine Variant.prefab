@@ -1,15 +1,23 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &3471882741624534072
+--- !u!1001 &8642252154569756052
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 785618668344733616, guid: ec160292f9e999541b6f7daf6ecc346d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1331807911, guid: 2e9fab999565bab4eb33aca4bfccf50a, type: 3}
+    - target: {fileID: 785618668344733616, guid: ec160292f9e999541b6f7daf6ecc346d, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5843238874116743768, guid: ec160292f9e999541b6f7daf6ecc346d, type: 3}
       propertyPath: m_Name
-      value: Farm
+      value: Mine
       objectReference: {fileID: 0}
     - target: {fileID: 5843238874116743782, guid: ec160292f9e999541b6f7daf6ecc346d, type: 3}
       propertyPath: m_RootOrder
@@ -57,41 +65,40 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec160292f9e999541b6f7daf6ecc346d, type: 3}
---- !u!212 &4236074091797060488 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 785618668344733616, guid: ec160292f9e999541b6f7daf6ecc346d, type: 3}
-  m_PrefabInstance: {fileID: 3471882741624534072}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &7005842048430216800 stripped
+--- !u!1 &2808038656580218828 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5843238874116743768, guid: ec160292f9e999541b6f7daf6ecc346d, type: 3}
-  m_PrefabInstance: {fileID: 3471882741624534072}
+  m_PrefabInstance: {fileID: 8642252154569756052}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &79776859
+--- !u!114 &732257671
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7005842048430216800}
+  m_GameObject: {fileID: 2808038656580218828}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d161aca18270c0469cb3f5f77f7c8d8, type: 3}
+  m_Script: {fileID: 11500000, guid: 71e3561b7f3c3444eb8acdcc54c421c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_producer: {fileID: 0}
   m_level: 0
   m_level_requirments:
-  - m_energy: 0
+  - m_energy: 2
     m_food: 0
-    m_workforce: 0
-    m_wood: 0
+    m_workforce: 3
+    m_wood: 3
     m_minerals: 0
-  - m_energy: 0
+  - m_energy: 10
     m_food: 0
-    m_workforce: 0
-    m_wood: 0
+    m_workforce: 10
+    m_wood: 10
     m_minerals: 0
-  m_renderer: {fileID: 4236074091797060488}
+  m_renderer: {fileID: 9009563823012995620}
   m_sprites: []
-  m_workforce: 10
+--- !u!212 &9009563823012995620 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 785618668344733616, guid: ec160292f9e999541b6f7daf6ecc346d, type: 3}
+  m_PrefabInstance: {fileID: 8642252154569756052}
+  m_PrefabAsset: {fileID: 0}

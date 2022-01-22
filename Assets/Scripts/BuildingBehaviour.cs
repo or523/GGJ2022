@@ -4,6 +4,8 @@ using UnityEngine;
 
 using Unity.Netcode;
 
+using System;
+
 public class BuildingBehaviour : MonoBehaviour, INetworkSerializable
 {
     [HideInInspector]
@@ -14,10 +16,23 @@ public class BuildingBehaviour : MonoBehaviour, INetworkSerializable
     public int m_level;     // building level
     public Resources[] m_level_requirments;
 
+    [HideInInspector]
+    public SpriteRenderer m_renderer;
+
+    [HideInInspector]
+    public Sprite[]       m_sprites;
+
     // Start is called before the first frame update
     public void Start()
     {
+        m_renderer = GetComponent<SpriteRenderer>();
         m_producer = GetComponent<ConsumerProducerBehaviour>();
+
+        String name = m_renderer.sprite.name;
+        String spritepath = "Sprites/" + name.Substring(0, name.Length-2);
+        Debug.Log("Loading sprites - " + spritepath);
+        m_sprites = UnityEngine.Resources.LoadAll<Sprite>(spritepath);
+        Debug.Log("Loaded " + m_sprites.Length + " sprites");
     }
 
     public bool CanUpgrade(Resources resources)
@@ -31,6 +46,8 @@ public class BuildingBehaviour : MonoBehaviour, INetworkSerializable
         {
             resources -= m_level_requirments[m_level];
             ++m_level;
+
+            m_renderer.sprite = m_sprites[m_level];
         }
     }
 
