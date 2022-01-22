@@ -127,7 +127,12 @@ public class GameManager : MonoBehaviour
                 // let the players make their move
                 if (AreAllPlayersReady())
                 {
-                    // TODO: commit decisions
+                    // commit decisions
+                    foreach (Decision decision in m_decisions)
+                    {
+                        decision.ApplyDecision();
+                    }
+
                     SetAllPlayersToNotReady();
                     m_gameState = GameState.WorldEvent;
                 }
