@@ -72,11 +72,11 @@ public class PlayerUIController : MonoBehaviour
             Label resourceWoodLabel = card.Q<Label>("wood-resource");
             Label resourceWorkforceLabel = card.Q<Label>("workforce-resource");
 
-            resourceEnergyLabel.text = string.Format("{0} En", decision.m_resources_needed.m_energy);
-            resourceMineralsLabel.text = string.Format("{0} Mi", decision.m_resources_needed.m_minerals);
-            resourceFoodLabel.text = string.Format("{0} Fo", decision.m_resources_needed.m_food);
-            resourceWoodLabel.text = string.Format("{0} Wo", decision.m_resources_needed.m_wood);
-            resourceWorkforceLabel.text = string.Format("{0} Po", decision.m_resources_needed.m_workforce);
+            resourceEnergyLabel.text = string.Format("{0}", decision.m_resources_needed.m_energy);
+            resourceMineralsLabel.text = string.Format("{0}", decision.m_resources_needed.m_minerals);
+            resourceFoodLabel.text = string.Format("{0}", decision.m_resources_needed.m_food);
+            resourceWoodLabel.text = string.Format("{0}", decision.m_resources_needed.m_wood);
+            resourceWorkforceLabel.text = string.Format("{0}", decision.m_resources_needed.m_workforce);
 
             // Decision label (TODO: fix ToString)
             Label decisionLabel = card.Q<Label>("decision-description");

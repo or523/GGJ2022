@@ -5,19 +5,19 @@
             <ui:VisualElement name="resources-hud" style="background-image: url(&apos;project://database/Assets/UI/Sprites/hud_resources.png?fileID=21300000&amp;guid=bbf5014c3c088894d941ea8be17bfd93&amp;type=3#hud_resources&apos;); width: 1000px; height: 101px; -unity-background-scale-mode: scale-to-fit; margin-left: 1%; margin-right: 1%; margin-top: 1%; margin-bottom: 1%; flex-direction: row; align-items: center; justify-content: space-around;">
                 <ui:VisualElement style="flex-direction: row;">
                     <ui:Label text="Label" display-tooltip-when-elided="true" name="energy-resource" class="resource-label" />
-                    <ui:VisualElement style="background-image: url(&apos;project://database/Assets/UI/Icons/Energy.png?fileID=21300000&amp;guid=d8281ed50c104564899a8541d58388e5&amp;type=3#Energy&apos;); width: 40px; height: 40px;" />
+                    <ui:VisualElement style="background-image: url(&apos;project://database/Assets/UI/Icons/elec_30px.png?fileID=21300000&amp;guid=d8d9c4e6bcc56b146b43e7c31f52d561&amp;type=3#elec_30px&apos;); width: 40px; height: 40px;" />
                 </ui:VisualElement>
                 <ui:VisualElement style="flex-direction: row;">
                     <ui:Label text="Label" display-tooltip-when-elided="true" name="minerals-resource" class="resource-label" />
-                    <ui:VisualElement style="background-image: url(&apos;project://database/Assets/UI/Icons/Metal.png?fileID=21300000&amp;guid=ae58cb7ccc11c2e45846dd6153f62e0f&amp;type=3#Metal&apos;); width: 40px; height: 40px;" />
+                    <ui:VisualElement style="background-image: url(&apos;project://database/Assets/UI/Icons/metal_30px.png?fileID=21300000&amp;guid=43e640b1ffdf27540a381373818bb900&amp;type=3#metal_30px&apos;); width: 40px; height: 40px;" />
                 </ui:VisualElement>
                 <ui:VisualElement style="flex-direction: row;">
                     <ui:Label text="Label" display-tooltip-when-elided="true" name="wood-resource" class="resource-label" />
-                    <ui:VisualElement style="background-image: url(&apos;project://database/Assets/UI/Icons/Wood.png?fileID=21300000&amp;guid=f9b1d221fe04b3d4dbade234f9edcfe1&amp;type=3#Wood&apos;); width: 40px; height: 40px;" />
+                    <ui:VisualElement style="background-image: url(&apos;project://database/Assets/UI/Icons/wood_30px.png?fileID=21300000&amp;guid=5969a28ee0f26ce4492cbd42d831dd6c&amp;type=3#wood_30px&apos;); width: 40px; height: 40px;" />
                 </ui:VisualElement>
                 <ui:VisualElement style="flex-direction: row;">
                     <ui:Label text="Label" display-tooltip-when-elided="true" name="food-resource" class="resource-label" />
-                    <ui:VisualElement style="background-image: url(&apos;project://database/Assets/UI/Icons/Food.png?fileID=21300000&amp;guid=8ff1250f30ef6e8458997c6359a9e079&amp;type=3#Food&apos;); width: 40px; height: 40px;" />
+                    <ui:VisualElement style="background-image: url(&apos;project://database/Assets/UI/Icons/food_30px.png?fileID=21300000&amp;guid=2a282b6ea48bcc747b19120f0f0fb045&amp;type=3#food_30px&apos;); width: 40px; height: 40px;" />
                 </ui:VisualElement>
                 <ui:VisualElement style="flex-direction: row;">
                     <ui:Label text="Label" display-tooltip-when-elided="true" name="workforce-resource" class="resource-label" />

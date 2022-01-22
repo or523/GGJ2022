@@ -7,19 +7,19 @@
         <ui:VisualElement name="decision-resources" style="flex-direction: row; width: 100%; height: 50%; align-items: center; justify-content: space-around; padding-left: 15%; padding-right: 10%; padding-bottom: 5%; padding-top: 5px;">
             <ui:VisualElement style="align-items: center; justify-content: space-between;">
                 <ui:Label text="Label" display-tooltip-when-elided="true" name="energy-resource" class="decision-resource-label" />
-                <ui:VisualElement style="background-image: url(&apos;project://database/Assets/UI/Icons/Energy.png?fileID=2800000&amp;guid=d8281ed50c104564899a8541d58388e5&amp;type=3#Energy&apos;); width: 50px; height: 50px;" />
+                <ui:VisualElement style="background-image: url(&apos;project://database/Assets/UI/Icons/elec_55px.png?fileID=2800000&amp;guid=2a079eb7537514a4a86e067e52842244&amp;type=3#elec_55px&apos;); width: 55px; height: 55px;" />
             </ui:VisualElement>
             <ui:VisualElement style="align-items: center; justify-content: space-between;">
                 <ui:Label text="Label" display-tooltip-when-elided="true" name="minerals-resource" class="decision-resource-label" />
-                <ui:VisualElement style="background-image: url(&apos;project://database/Assets/UI/Icons/Metal.png?fileID=2800000&amp;guid=ae58cb7ccc11c2e45846dd6153f62e0f&amp;type=3#Metal&apos;); width: 50px; height: 50px;" />
+                <ui:VisualElement style="background-image: url(&apos;project://database/Assets/UI/Icons/metal_55px.png?fileID=2800000&amp;guid=3e5378ecf191d814f995e82f7e9ba3db&amp;type=3#metal_55px&apos;); width: 55px; height: 55px;" />
             </ui:VisualElement>
             <ui:VisualElement style="align-items: center; justify-content: space-between;">
                 <ui:Label text="Label" display-tooltip-when-elided="true" name="wood-resource" class="decision-resource-label" />
-                <ui:VisualElement style="background-image: url(&apos;project://database/Assets/UI/Icons/Wood.png?fileID=2800000&amp;guid=f9b1d221fe04b3d4dbade234f9edcfe1&amp;type=3#Wood&apos;); width: 50px; height: 50px;" />
+                <ui:VisualElement style="background-image: url(&apos;project://database/Assets/UI/Icons/wood_55px.png?fileID=2800000&amp;guid=f2bc184c73ac0b441ad46d720f35dd02&amp;type=3#wood_55px&apos;); width: 55px; height: 55px;" />
             </ui:VisualElement>
             <ui:VisualElement style="align-items: center; justify-content: space-between;">
                 <ui:Label text="Label" display-tooltip-when-elided="true" name="food-resource" class="decision-resource-label" />
-                <ui:VisualElement style="background-image: url(&apos;project://database/Assets/UI/Icons/Food.png?fileID=2800000&amp;guid=8ff1250f30ef6e8458997c6359a9e079&amp;type=3#Food&apos;); width: 50px; height: 50px;" />
+                <ui:VisualElement style="background-image: url(&apos;project://database/Assets/UI/Icons/food_55px.png?fileID=2800000&amp;guid=2dd450ccc6b421a4aa30bf702abeead6&amp;type=3#food_55px&apos;); width: 55px; height: 55px;" />
             </ui:VisualElement>
             <ui:VisualElement style="align-items: center; justify-content: space-between;">
                 <ui:Label text="Label" display-tooltip-when-elided="true" name="workforce-resource" class="decision-resource-label" />

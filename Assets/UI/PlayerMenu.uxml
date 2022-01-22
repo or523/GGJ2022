@@ -3,7 +3,7 @@
     <ui:VisualElement style="height: 100%; align-items: center; justify-content: space-around; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 20px; padding-right: 20px; padding-top: 20px; padding-bottom: 20px; background-image: url(&apos;project://database/Assets/UI/Sprites/background_mobile_02.png?fileID=2800000&amp;guid=8a57f4a23d9a52140bbdbd5388e90a26&amp;type=3#background_mobile_02&apos;); -unity-background-scale-mode: scale-to-fit; flex-direction: row; width: 100%;">
         <ui:VisualElement name="Decisions" style="height: 95%; width: 45%; align-items: center; justify-content: center; margin-right: 0; background-image: url(&apos;project://database/Assets/UI/Sprites/list.png?fileID=2800000&amp;guid=b00805948ee7ba94ea9cfd30f40df84b&amp;type=3#list&apos;);">
             <ui:Label text="Decisions:" display-tooltip-when-elided="true" name="Label" style="-unity-text-align: upper-center; -unity-font-style: bold; font-size: 80%;" />
-            <ui:ListView focusable="true" name="decisions-list" fixed-item-height="150" virtualization-method="FixedHeight" style="height: 70%; width: 80%; align-items: center;" />
+            <ui:ListView focusable="true" name="decisions-list" fixed-item-height="150" virtualization-method="FixedHeight" selection-type="None" style="height: 70%; width: 80%; align-items: center;" />
         </ui:VisualElement>
         <ui:VisualElement style="height: 95%; width: 45%; justify-content: space-around;">
             <ui:VisualElement style="width: 100%; height: 50%; justify-content: space-around; align-items: center;">
