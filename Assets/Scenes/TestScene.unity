@@ -1032,6 +1032,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerUI: {fileID: 9197481963319205126, guid: 8be2d482c9c817544803667e12153ecc, type: 3}
   playerDecisionCard: {fileID: 9197481963319205126, guid: 5cc573a46535db24290db9354c412079, type: 3}
+  energyToggle: {fileID: 21300000, guid: f57a6719e85f08c4e9a16c42ebffee43, type: 3}
+  mineralsToggle: {fileID: 21300000, guid: 9540038a5a5434b48907b655b9df3ad8, type: 3}
+  foodToggle: {fileID: 21300000, guid: f41d10ec5ad428e48a92d62bc0539551, type: 3}
+  woodToggle: {fileID: 21300000, guid: df5b9d766d166c94eb755e6cde2267fb, type: 3}
 --- !u!114 &1818471543
 MonoBehaviour:
   m_ObjectHideFlags: 0

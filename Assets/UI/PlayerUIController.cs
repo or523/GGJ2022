@@ -21,6 +21,11 @@ public class PlayerUIController : MonoBehaviour
 
     public VisualTreeAsset playerDecisionCard;
 
+    public Sprite energyToggle;
+    public Sprite mineralsToggle;
+    public Sprite foodToggle;
+    public Sprite woodToggle;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -86,6 +91,22 @@ public class PlayerUIController : MonoBehaviour
             else
             {
                 decision_toggle.style.unityBackgroundImageTintColor = new StyleColor(new Color(1f, 1f, 1f, 0f));
+            }
+            
+            switch (NetworkPlayer.LocalInstance.playerResource.Value)
+            {
+                case ResourceType.Energy:
+                    decision_toggle.style.backgroundImage = new StyleBackground(energyToggle.texture);
+                    break;
+                case ResourceType.Food:
+                    decision_toggle.style.backgroundImage = new StyleBackground(foodToggle.texture);
+                    break;
+                case ResourceType.Minerals:
+                    decision_toggle.style.backgroundImage = new StyleBackground(mineralsToggle.texture);
+                    break;
+                case ResourceType.Wood:
+                    decision_toggle.style.backgroundImage = new StyleBackground(woodToggle.texture);
+                    break;
             }
         };
 
