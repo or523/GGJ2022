@@ -827,6 +827,7 @@ MonoBehaviour:
   m_remaining_resources: 
   m_rocket: {fileID: 0}
   m_win_mission: {fileID: 0}
+  m_waiting_for_players: 0
 --- !u!114 &1627268631
 MonoBehaviour:
   m_ObjectHideFlags: 0

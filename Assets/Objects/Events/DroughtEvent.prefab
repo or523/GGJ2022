@@ -45,18 +45,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_type: 0
-  m_should_play_sound: 1
-  m_is_good_event: 0
   m_was_decision_made: 0
   m_required_resources:
-    m_energy: 0
-    m_food: 0
+    m_energy: 20
+    m_food: 20
     m_workforce: 0
-    m_wood: 0
-    m_minerals: 0
+    m_wood: 20
+    m_minerals: 20
   m_penalty_resources:
     m_energy: 0
-    m_food: 0
+    m_food: 50
     m_workforce: 0
     m_wood: 0
     m_minerals: 0

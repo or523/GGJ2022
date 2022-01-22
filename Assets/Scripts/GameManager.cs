@@ -52,6 +52,8 @@ public class GameManager : MonoBehaviour
     public BuildingBehaviour m_rocket;
     public Mission m_win_mission;
 
+    public bool m_waiting_for_players;
+
     void Awake()
     {
         Instance = this;
@@ -125,40 +127,37 @@ public class GameManager : MonoBehaviour
 
             case GameState.PlayersMove:
                 // let the players make their move
-                if (AreAllPlayersReady())
+                if (WaitForPlayerDecisions())
                 {
-                    Debug.Log("Commiting decisions");
-
-                    // commit decisions
-                    foreach (Decision decision in m_decisions)
-                    {
-                        decision.ApplyDecision();
-                    }
-
-                    SetAllPlayersToNotReady();
+                    // do a random world event
+                    DoWorldEvent();
                     m_gameState = GameState.WorldEvent;
                 }
+
                 break;
 
             case GameState.WorldEvent:
                 // clear the previous modifier
                 m_modifier = null;
 
-                // do a random world event
-                DoWorldEvent();
-
-                // update the turn count
-                CountTurns();
-
-                // check if turns ran out
-                if (max_turns == m_turn_counter)
+                // let the players make their move (in case of a decision event)
+                // if no decision - this does nothing
+                if (WaitForPlayerDecisions())
                 {
-                    m_gameState = GameState.GameEnd;
+                    // update the turn count
+                    CountTurns();
+
+                    // check if turns ran out
+                    if (max_turns == m_turn_counter)
+                    {
+                        m_gameState = GameState.GameEnd;
+                    }
+                    else
+                    {
+                        m_gameState = GameState.Produce;
+                    }
                 }
-                else
-                {
-                    m_gameState = GameState.Produce;
-                }
+
 
                 break;
 
@@ -171,6 +170,27 @@ public class GameManager : MonoBehaviour
                 Debug.Log("WTF");
                 break;
         }
+    }
+
+    public bool WaitForPlayerDecisions()
+    {
+        // if not waiting for players - dont waiting :)
+        if (!m_waiting_for_players)
+        {
+            return true;
+        }
+
+        // if waiting and all players are ready - done
+        if (AreAllPlayersReady())
+        {
+            CommitDecisions(m_decisions);
+            SetAllPlayersToNotReady();
+            
+            return true;
+        }
+
+        // keep on waiting...
+        return false;
     }
 
     public void Produce()
@@ -249,10 +269,24 @@ public class GameManager : MonoBehaviour
     public void PublishDecisions(List<Decision> decisions)
     {
         // Set the current server-side decisions
+        m_waiting_for_players = true;
         m_decisions = decisions;
 
         // Publish decision to clients
         NetworkServer.Instance.UpdateAllPlayersDecisions(decisions);
+    }
+
+    public void CommitDecisions(List<Decision> decisions)
+    {
+        m_waiting_for_players = false;
+
+        Debug.Log("Commiting decisions");
+
+        // commit decisions
+        foreach (Decision decision in m_decisions)
+        {
+            decision.ApplyDecision();
+        }
     }
 
     public void DoWorldEvent()
@@ -262,6 +296,7 @@ public class GameManager : MonoBehaviour
         switch (world_event.m_type)
         {
             case EventType.Decision:
+                Debug.Log("Generating world event decision");
                 Decision decision = new EventDecision(0, world_event as DecisionWorldEvent);
                 PublishDecision(decision);
                 break;

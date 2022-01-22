@@ -46,15 +46,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_type: 0
-  m_should_play_sound: 1
-  m_is_good_event: 0
   m_was_decision_made: 0
   m_required_resources:
-    m_energy: 0
-    m_food: 0
+    m_energy: 30
+    m_food: 30
     m_workforce: 0
-    m_wood: 0
-    m_minerals: 0
+    m_wood: 30
+    m_minerals: 30
   m_consumer: {fileID: 2897255116102312088}
   m_modifiers:
     m_energy: 0.5
