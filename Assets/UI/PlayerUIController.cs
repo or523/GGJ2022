@@ -7,17 +7,6 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class DecisionButton : Button
-{
-    public Decision decision;
-    public bool isSelected;
-
-    public void flipSelection()
-    {
-        isSelected = !isSelected;
-    }
-}
-
 public class PlayerUIController : MonoBehaviour
 {
     // Components
@@ -29,6 +18,8 @@ public class PlayerUIController : MonoBehaviour
     public VisualTreeAsset playerUI;
 
     public List<Decision> m_decisions;
+
+    public VisualTreeAsset playerDecisionCard;
 
     // Start is called before the first frame update
     void Start()
@@ -53,9 +44,9 @@ public class PlayerUIController : MonoBehaviour
         // when the ListView needs more items to render
         Func<VisualElement> makeItem = () =>
         {
-            DecisionButton button = new DecisionButton();
-            button.clickable.clickedWithEventInfo += PlayerDecisionButtonClicked;
-            return button;
+            var card = playerDecisionCard.CloneTree();
+            card.Q<Button>("decision-button").clickable.clickedWithEventInfo += PlayerDecisionButtonClicked;
+            return card;
         };
 
         // As the user scrolls through the list, the ListView object
@@ -64,12 +55,38 @@ public class PlayerUIController : MonoBehaviour
         // the element with the matching data item (specified as an index in the list)
         Action<VisualElement, int> bindItem = (e, i) =>
         {
-            DecisionButton button = e as DecisionButton;
-            button.decision = m_decisions[i];
-            button.isSelected = false;
+            Decision decision = m_decisions[i];
+            TemplateContainer card = e as TemplateContainer;
 
-            // TODO: represent the decision graphically 
-            button.text = "[X] Decision - " + m_decisions[i].m_decision_id;
+            Button cardButton = card.Q<Button>("decision-button");
+            cardButton.userData = decision;
+
+            Label resourceEnergyLabel = card.Q<Label>("energy-resource");
+            Label resourceMineralsLabel = card.Q<Label>("minerals-resource");
+            Label resourceFoodLabel = card.Q<Label>("food-resource");
+            Label resourceWoodLabel = card.Q<Label>("wood-resource");
+            Label resourceWorkforceLabel = card.Q<Label>("workforce-resource");
+
+            resourceEnergyLabel.text = string.Format("{0} En", decision.m_resources_needed.m_energy);
+            resourceMineralsLabel.text = string.Format("{0} Mi", decision.m_resources_needed.m_minerals);
+            resourceFoodLabel.text = string.Format("{0} Fo", decision.m_resources_needed.m_food);
+            resourceWoodLabel.text = string.Format("{0} Wo", decision.m_resources_needed.m_wood);
+            resourceWorkforceLabel.text = string.Format("{0} Po", decision.m_resources_needed.m_workforce);
+
+            // Decision label (TODO: fix ToString)
+            Label decisionLabel = card.Q<Label>("decision-description");
+            decisionLabel.text = string.Format("{0}", decision.ToString());
+
+            // Is it selected?
+            VisualElement decision_toggle = card.Q<VisualElement>("decision-toggle");
+            if (decision.m_is_selected)
+            {
+                decision_toggle.style.unityBackgroundImageTintColor = new StyleColor(new Color(1f, 1f, 1f, 1f));
+            }
+            else
+            {
+                decision_toggle.style.unityBackgroundImageTintColor = new StyleColor(new Color(1f, 1f, 1f, 0f));
+            }
         };
 
         playerDecisionsListView.makeItem = makeItem;
@@ -124,21 +141,23 @@ public class PlayerUIController : MonoBehaviour
 
     public void PlayerDecisionButtonClicked(EventBase tab)
     {
-        DecisionButton button = tab.target as DecisionButton;
-        Decision decision = button.decision;
+        Button button = tab.target as Button;
+        Decision decision = button.userData as Decision;
 
-        // TODO: change button color
-        button.flipSelection();
-        if (button.isSelected)
+        // TODO: change button color / stamp
+        decision.m_is_selected = !decision.m_is_selected;
+
+        VisualElement decision_toggle = button.parent.Q<VisualElement>("decision-toggle");
+        if (decision.m_is_selected)
         {
-            button.text = "[V] Decision - " + decision.m_decision_id;
+            decision_toggle.style.unityBackgroundImageTintColor = new StyleColor(new Color(1f, 1f, 1f, 1f));
         }
         else
         {
-            button.text = "[X] Decision - " + decision.m_decision_id;
+            decision_toggle.style.unityBackgroundImageTintColor = new StyleColor(new Color(1f, 1f, 1f, 0f));
         }
 
         NetworkPlayer.LocalInstance.UpdatePlayerDecisionServerRPC(
-            decision.m_decision_id, NetworkPlayer.LocalInstance.playerResource.Value, button.isSelected);
+            decision.m_decision_id, NetworkPlayer.LocalInstance.playerResource.Value, decision.m_is_selected);
     }
 }
