@@ -5,11 +5,26 @@
             <ui:Label text="Farm: 1 -&gt; 2" display-tooltip-when-elided="true" name="decision-description" style="font-size: 35%; -unity-font-style: bold; -unity-text-align: upper-center; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;" />
         </ui:VisualElement>
         <ui:VisualElement name="decision-resources" style="flex-direction: row; width: 100%; height: 50%; align-items: center; justify-content: space-around; padding-left: 15%; padding-right: 10%; padding-bottom: 5%; padding-top: 5px;">
-            <ui:Label text="Label" display-tooltip-when-elided="true" name="energy-resource" class="decision-resource-label" />
-            <ui:Label text="Label" display-tooltip-when-elided="true" name="minerals-resource" class="decision-resource-label" />
-            <ui:Label text="Label" display-tooltip-when-elided="true" name="wood-resource" class="decision-resource-label" />
-            <ui:Label text="Label" display-tooltip-when-elided="true" name="food-resource" class="decision-resource-label" />
-            <ui:Label text="Label" display-tooltip-when-elided="true" name="workforce-resource" class="decision-resource-label" />
+            <ui:VisualElement style="align-items: center; justify-content: space-between;">
+                <ui:Label text="Label" display-tooltip-when-elided="true" name="energy-resource" class="decision-resource-label" />
+                <ui:VisualElement style="background-image: url(&apos;project://database/Assets/UI/Icons/Energy.png?fileID=2800000&amp;guid=d8281ed50c104564899a8541d58388e5&amp;type=3#Energy&apos;); width: 50px; height: 50px;" />
+            </ui:VisualElement>
+            <ui:VisualElement style="align-items: center; justify-content: space-between;">
+                <ui:Label text="Label" display-tooltip-when-elided="true" name="minerals-resource" class="decision-resource-label" />
+                <ui:VisualElement style="background-image: url(&apos;project://database/Assets/UI/Icons/Metal.png?fileID=2800000&amp;guid=ae58cb7ccc11c2e45846dd6153f62e0f&amp;type=3#Metal&apos;); width: 50px; height: 50px;" />
+            </ui:VisualElement>
+            <ui:VisualElement style="align-items: center; justify-content: space-between;">
+                <ui:Label text="Label" display-tooltip-when-elided="true" name="wood-resource" class="decision-resource-label" />
+                <ui:VisualElement style="background-image: url(&apos;project://database/Assets/UI/Icons/Wood.png?fileID=2800000&amp;guid=f9b1d221fe04b3d4dbade234f9edcfe1&amp;type=3#Wood&apos;); width: 50px; height: 50px;" />
+            </ui:VisualElement>
+            <ui:VisualElement style="align-items: center; justify-content: space-between;">
+                <ui:Label text="Label" display-tooltip-when-elided="true" name="food-resource" class="decision-resource-label" />
+                <ui:VisualElement style="background-image: url(&apos;project://database/Assets/UI/Icons/Food.png?fileID=2800000&amp;guid=8ff1250f30ef6e8458997c6359a9e079&amp;type=3#Food&apos;); width: 50px; height: 50px;" />
+            </ui:VisualElement>
+            <ui:VisualElement style="align-items: center; justify-content: space-between;">
+                <ui:Label text="Label" display-tooltip-when-elided="true" name="workforce-resource" class="decision-resource-label" />
+                <ui:VisualElement style="background-image: resource(&apos;Sprites/island_big_FLAT&apos;); width: 50px; height: 50px;" />
+            </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
