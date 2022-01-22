@@ -43,6 +43,10 @@ public class ServerGameUIController : MonoBehaviour
         // start ambient music
         AudioManager.Instance.PlayAmbience();
 
+        // stop background animation and show buildings
+        DisplayManager.Instance.StopAnimation();
+        DisplayManager.Instance.ToggleBuildings(true);
+
         m_decisions = new List<Decision>();
         GetComponent<UIDocument>().visualTreeAsset = serverGameUI;
 
