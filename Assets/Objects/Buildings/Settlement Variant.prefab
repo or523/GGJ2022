@@ -19,6 +19,42 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4831462224319826114, guid: ec160292f9e999541b6f7daf6ecc346d, type: 3}
+      propertyPath: m_level_requirments.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831462224319826114, guid: ec160292f9e999541b6f7daf6ecc346d, type: 3}
+      propertyPath: m_level_requirments.Array.data[0].m_food
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831462224319826114, guid: ec160292f9e999541b6f7daf6ecc346d, type: 3}
+      propertyPath: m_level_requirments.Array.data[0].m_wood
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831462224319826114, guid: ec160292f9e999541b6f7daf6ecc346d, type: 3}
+      propertyPath: m_level_requirments.Array.data[1].m_food
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831462224319826114, guid: ec160292f9e999541b6f7daf6ecc346d, type: 3}
+      propertyPath: m_level_requirments.Array.data[1].m_wood
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831462224319826114, guid: ec160292f9e999541b6f7daf6ecc346d, type: 3}
+      propertyPath: m_level_requirments.Array.data[0].m_energy
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831462224319826114, guid: ec160292f9e999541b6f7daf6ecc346d, type: 3}
+      propertyPath: m_level_requirments.Array.data[1].m_energy
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831462224319826114, guid: ec160292f9e999541b6f7daf6ecc346d, type: 3}
+      propertyPath: m_level_requirments.Array.data[0].m_minerals
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831462224319826114, guid: ec160292f9e999541b6f7daf6ecc346d, type: 3}
+      propertyPath: m_level_requirments.Array.data[1].m_minerals
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5843238874116743768, guid: ec160292f9e999541b6f7daf6ecc346d, type: 3}
       propertyPath: m_Name
       value: Settlement Variant
@@ -77,35 +113,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec160292f9e999541b6f7daf6ecc346d, type: 3}
---- !u!1 &7161250670773951065 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5843238874116743768, guid: ec160292f9e999541b6f7daf6ecc346d, type: 3}
-  m_PrefabInstance: {fileID: 3636240289648687105}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1559372331281575851
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7161250670773951065}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71e3561b7f3c3444eb8acdcc54c421c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_producer: {fileID: 0}
-  m_level: 0
-  m_level_requirments:
-  - m_energy: 8
-    m_food: 8
-    m_workforce: 0
-    m_wood: 4
-    m_minerals: 4
-  - m_energy: 16
-    m_food: 16
-    m_workforce: 0
-    m_wood: 8
-    m_minerals: 8
-  m_renderer: {fileID: 0}
-  m_sprites: []

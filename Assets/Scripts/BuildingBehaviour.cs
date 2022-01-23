@@ -80,4 +80,9 @@ public class BuildingBehaviour : MonoBehaviour, INetworkSerializable
     {
         return m_name;
     }
+
+    public void LevelScaleCalculation(ConsumerProducerBehaviour consumer)
+    {
+        consumer.m_calculated_consumption += (consumer.m_base_consumption * m_level);
+    }
 }

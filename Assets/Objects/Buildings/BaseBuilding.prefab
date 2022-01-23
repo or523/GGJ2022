@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5843238874116743782}
   - component: {fileID: 5843238874116743780}
   - component: {fileID: 785618668344733616}
+  - component: {fileID: 4831462224319826114}
   m_Layer: 0
   m_Name: BaseBuilding
   m_TagString: Untagged
@@ -57,6 +58,18 @@ MonoBehaviour:
       - m_Target: {fileID: 5843238874116743780}
         m_TargetAssemblyTypeName: ConsumerProducerBehaviour, Assembly-CSharp
         m_MethodName: IdentityCalculation
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4831462224319826114}
+        m_TargetAssemblyTypeName: BuildingBehaviour, Assembly-CSharp
+        m_MethodName: LevelScaleCalculation
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -136,3 +149,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4831462224319826114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5843238874116743768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71e3561b7f3c3444eb8acdcc54c421c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_name: 
+  m_producer: {fileID: 0}
+  m_level: 0
+  m_level_requirments: []
+  m_renderer: {fileID: 0}
+  m_sprites: []

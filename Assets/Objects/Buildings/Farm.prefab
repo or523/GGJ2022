@@ -19,6 +19,38 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4831462224319826114, guid: ec160292f9e999541b6f7daf6ecc346d, type: 3}
+      propertyPath: m_renderer
+      value: 
+      objectReference: {fileID: 4236074091797060488}
+    - target: {fileID: 4831462224319826114, guid: ec160292f9e999541b6f7daf6ecc346d, type: 3}
+      propertyPath: m_level_requirments.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831462224319826114, guid: ec160292f9e999541b6f7daf6ecc346d, type: 3}
+      propertyPath: m_level_requirments.Array.data[0].m_wood
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831462224319826114, guid: ec160292f9e999541b6f7daf6ecc346d, type: 3}
+      propertyPath: m_level_requirments.Array.data[1].m_wood
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831462224319826114, guid: ec160292f9e999541b6f7daf6ecc346d, type: 3}
+      propertyPath: m_level_requirments.Array.data[0].m_energy
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831462224319826114, guid: ec160292f9e999541b6f7daf6ecc346d, type: 3}
+      propertyPath: m_level_requirments.Array.data[1].m_energy
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831462224319826114, guid: ec160292f9e999541b6f7daf6ecc346d, type: 3}
+      propertyPath: m_level_requirments.Array.data[0].m_minerals
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831462224319826114, guid: ec160292f9e999541b6f7daf6ecc346d, type: 3}
+      propertyPath: m_level_requirments.Array.data[1].m_minerals
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5843238874116743768, guid: ec160292f9e999541b6f7daf6ecc346d, type: 3}
       propertyPath: m_Name
       value: Farm
@@ -90,36 +122,3 @@ SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 785618668344733616, guid: ec160292f9e999541b6f7daf6ecc346d, type: 3}
   m_PrefabInstance: {fileID: 3471882741624534072}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &7005842048430216800 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5843238874116743768, guid: ec160292f9e999541b6f7daf6ecc346d, type: 3}
-  m_PrefabInstance: {fileID: 3471882741624534072}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &79776859
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7005842048430216800}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d161aca18270c0469cb3f5f77f7c8d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_producer: {fileID: 0}
-  m_level: 0
-  m_level_requirments:
-  - m_energy: 2
-    m_food: 0
-    m_workforce: 0
-    m_wood: 5
-    m_minerals: 5
-  - m_energy: 4
-    m_food: 0
-    m_workforce: 0
-    m_wood: 5
-    m_minerals: 5
-  m_renderer: {fileID: 4236074091797060488}
-  m_sprites: []
-  m_workforce: 10

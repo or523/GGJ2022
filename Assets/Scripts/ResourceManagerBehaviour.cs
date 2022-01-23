@@ -66,6 +66,19 @@ public class Resources : INetworkSerializable
         return multiplied;
     }
 
+    public static Resources operator *(Resources a, float x)
+    {
+        Resources multiplied = new Resources();
+        
+        multiplied.m_energy     = a.m_energy    * x;
+        multiplied.m_food       = a.m_food      * x;
+        multiplied.m_workforce  = a.m_workforce * x;
+        multiplied.m_wood       = a.m_wood      * x;
+        multiplied.m_minerals   = a.m_minerals  * x;
+
+        return multiplied;
+    }
+
     public static Resources operator -(Resources a) 
     {
         Resources neg = new Resources();
