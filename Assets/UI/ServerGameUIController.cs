@@ -44,7 +44,6 @@ public class ServerGameUIController : MonoBehaviour
         AudioManager.Instance.PlayAmbience();
 
         // stop background animation and show buildings
-        DisplayManager.Instance.StopAnimation();
         DisplayManager.Instance.ToggleBuildings(true);
 
         m_decisions = new List<Decision>();
