@@ -937,11 +937,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_resources:
-    m_energy: 1000
-    m_food: 1000
-    m_workforce: 1000
-    m_wood: 1000
-    m_minerals: 1000
+    m_energy: 20
+    m_food: 20
+    m_workforce: 20
+    m_wood: 20
+    m_minerals: 20
   m_alltime_total:
     m_energy: 0
     m_food: 0
