@@ -11,6 +11,7 @@ public class MenuUIController : MonoBehaviour
     // Main Menu
     public Button mainMenuServerButton;
     public Button mainMenuClientServerButton;
+    public Button mainMenuAboutButton;
     public Button mainMenuExit;
 
     // Server
@@ -23,23 +24,34 @@ public class MenuUIController : MonoBehaviour
     public Button clientJoinButton;
     public Label clientConnectionStatus;
 
+    // About menu
+    public Button aboutExitButton;
+
     // Layouts
     public VisualTreeAsset mainMenu;
     public VisualTreeAsset serverMenu;
     public VisualTreeAsset clientMenu;
+    public VisualTreeAsset aboutMenu;
 
     // Start is called before the first frame update
     void Start()
+    {
+        SwitchToMainMenu();
+    }
+
+    public void SwitchToMainMenu()
     {
         GetComponent<UIDocument>().visualTreeAsset = mainMenu;
 
         var root = GetComponent<UIDocument>().rootVisualElement;
         mainMenuServerButton = root.Q<Button>("server-button");
         mainMenuClientServerButton = root.Q<Button>("client-button");
+        mainMenuAboutButton = root.Q<Button>("about-button");
         mainMenuExit = root.Q<Button>("exit-button");
 
         mainMenuServerButton.clicked += SwitchToServerMenu;
         mainMenuClientServerButton.clicked += SwitchToClientMenu;
+        mainMenuAboutButton.clicked += SwitchToAboutMenu;
         mainMenuExit.clicked += ExitGame;
     }
 
@@ -67,6 +79,17 @@ public class MenuUIController : MonoBehaviour
         clientConnectionStatus = root.Q<Label>("connection-status");
 
         clientJoinButton.clicked += ClientJoinServer;
+    }
+
+    public void SwitchToAboutMenu()
+    {
+        GetComponent<UIDocument>().visualTreeAsset = aboutMenu;
+
+        var root = GetComponent<UIDocument>().rootVisualElement;
+        aboutExitButton = root.Q<Button>("exit-button");
+
+        aboutExitButton.clicked += SwitchToMainMenu;
+
     }
 
     public void ClientJoinServer()
