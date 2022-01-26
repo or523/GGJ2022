@@ -103,6 +103,9 @@ public class NetworkPlayer : NetworkBehaviour
 
         Debug.Log(string.Format("Update player decision: {0} / {1} / {2}", decision_id, resource, is_selected));
 
+        // If player set a new decision, its ready state should reset to false
+        this.isReady.Value = false;
+
         // Find GameManager and update its state
         GameManager.Instance.UpdateDecision(decision_id, resource, is_selected);
     }
