@@ -251,6 +251,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 138777783}
     m_Modifications:
+    - target: {fileID: 7005842048430216796, guid: 515c9e452ce36b24ba0106c0208bd78f, type: 3}
+      propertyPath: m_base_consumption.m_food
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005842048430216796, guid: 515c9e452ce36b24ba0106c0208bd78f, type: 3}
+      propertyPath: m_base_consumption.m_minerals
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7005842048430216798, guid: 515c9e452ce36b24ba0106c0208bd78f, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -1048,6 +1056,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7818760902953425676, guid: 5cfa460c3a6c52f42abbc35e3ae416cb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7818760902953425678, guid: 5cfa460c3a6c52f42abbc35e3ae416cb, type: 3}
+      propertyPath: m_base_consumption.m_minerals
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7818760902953425714, guid: 5cfa460c3a6c52f42abbc35e3ae416cb, type: 3}

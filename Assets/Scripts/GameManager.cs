@@ -202,7 +202,7 @@ public class GameManager : MonoBehaviour
         Resources production = new Resources();
         foreach (BuildingBehaviour building in m_buildings)
         {
-            production = building.Produce();
+            production += building.Produce();
         }
 
         // if there is an active modifier - apply
