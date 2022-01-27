@@ -12,4 +12,5 @@ DecisionButton {
 .decision-resource-label {
     font-size: 17px;
     -unity-font-definition: url('project://database/Assets/Fonts/Century%20Gothic%20SDF.asset?fileID=11400000&guid=24e562cf7e4ea5044a32db7939fcf0fc&type=2#Century Gothic SDF');
+    -unity-font-style: bold;
 }

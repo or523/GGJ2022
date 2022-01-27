@@ -90,10 +90,24 @@ public class ServerGameUIController : MonoBehaviour
             Label resourceWorkforceLabel = card.Q<Label>("workforce-resource");
 
             resourceEnergyLabel.text = string.Format("{0}", decision.m_resources_needed.m_energy);
+            resourceEnergyLabel.style.color = new StyleColor(
+                decision.m_resources_allocated.m_energy == decision.m_resources_needed.m_energy ? Color.green : Color.red);
+
             resourceMineralsLabel.text = string.Format("{0}", decision.m_resources_needed.m_minerals);
+            resourceMineralsLabel.style.color = new StyleColor(
+                decision.m_resources_allocated.m_minerals == decision.m_resources_needed.m_minerals ? Color.green : Color.red);
+
             resourceFoodLabel.text = string.Format("{0}", decision.m_resources_needed.m_food);
+            resourceFoodLabel.style.color = new StyleColor(
+                decision.m_resources_allocated.m_food == decision.m_resources_needed.m_food ? Color.green : Color.red);
+
             resourceWoodLabel.text = string.Format("{0}", decision.m_resources_needed.m_wood);
+            resourceWoodLabel.style.color = new StyleColor(
+                decision.m_resources_allocated.m_wood == decision.m_resources_needed.m_wood ? Color.green : Color.red);
+
             resourceWorkforceLabel.text = string.Format("{0}", decision.m_resources_needed.m_workforce);
+            resourceWorkforceLabel.style.color = new StyleColor(
+                decision.m_resources_allocated.m_workforce == decision.m_resources_needed.m_workforce ? Color.green : Color.red);
 
             // Decision label (TODO: fix ToString)
             Label decisionLabel = card.Q<Label>("decision-description");
