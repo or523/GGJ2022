@@ -3,30 +3,34 @@
     <ui:VisualElement name="server-hud" style="height: 100%; align-items: center; justify-content: space-around; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; background-image: none; -unity-background-scale-mode: scale-to-fit; flex-direction: row; width: 100%;">
         <ui:VisualElement name="main-game-window" style="width: 80%; height: 100%; left: 0; position: absolute; flex-direction: row;">
             <ui:VisualElement name="resources-hud" style="background-image: url(&apos;project://database/Assets/UI/Sprites/hud_resources.png?fileID=21300000&amp;guid=bbf5014c3c088894d941ea8be17bfd93&amp;type=3#hud_resources&apos;); width: 1000px; height: 101px; -unity-background-scale-mode: scale-to-fit; margin-left: 1%; margin-right: 1%; margin-top: 1%; margin-bottom: 1%; flex-direction: row; align-items: center; justify-content: space-around;">
-                <ui:VisualElement style="flex-direction: row;">
+                <ui:VisualElement style="flex-direction: row; width: 20%; align-items: center; justify-content: center;">
                     <ui:Label text="Label" display-tooltip-when-elided="true" name="energy-resource" class="resource-label" />
                     <ui:VisualElement style="background-image: url(&apos;project://database/Assets/UI/Icons/elec_30px.png?fileID=21300000&amp;guid=d8d9c4e6bcc56b146b43e7c31f52d561&amp;type=3#elec_30px&apos;); width: 40px; height: 40px;" />
                 </ui:VisualElement>
-                <ui:VisualElement style="flex-direction: row;">
+                <ui:VisualElement style="flex-direction: row; width: 20%; align-items: center; justify-content: center;">
                     <ui:Label text="Label" display-tooltip-when-elided="true" name="minerals-resource" class="resource-label" />
                     <ui:VisualElement style="background-image: url(&apos;project://database/Assets/UI/Icons/metal_30px.png?fileID=21300000&amp;guid=43e640b1ffdf27540a381373818bb900&amp;type=3#metal_30px&apos;); width: 40px; height: 40px;" />
                 </ui:VisualElement>
-                <ui:VisualElement style="flex-direction: row;">
+                <ui:VisualElement style="flex-direction: row; width: 20%; justify-content: center; align-items: center;">
                     <ui:Label text="Label" display-tooltip-when-elided="true" name="wood-resource" class="resource-label" />
                     <ui:VisualElement style="background-image: url(&apos;project://database/Assets/UI/Icons/wood_30px.png?fileID=21300000&amp;guid=5969a28ee0f26ce4492cbd42d831dd6c&amp;type=3#wood_30px&apos;); width: 40px; height: 40px;" />
                 </ui:VisualElement>
-                <ui:VisualElement style="flex-direction: row;">
+                <ui:VisualElement style="flex-direction: row; width: 20%; align-items: center; justify-content: center;">
                     <ui:Label text="Label" display-tooltip-when-elided="true" name="food-resource" class="resource-label" />
                     <ui:VisualElement style="background-image: url(&apos;project://database/Assets/UI/Icons/food_30px.png?fileID=21300000&amp;guid=2a282b6ea48bcc747b19120f0f0fb045&amp;type=3#food_30px&apos;); width: 40px; height: 40px;" />
                 </ui:VisualElement>
-                <ui:VisualElement style="flex-direction: row;">
+                <ui:VisualElement style="flex-direction: row; width: 20%; justify-content: center; align-items: center;">
                     <ui:Label text="Label" display-tooltip-when-elided="true" name="workforce-resource" class="resource-label" />
                     <ui:VisualElement style="background-image: url(&apos;project://database/Assets/UI/Icons/force_30px.png?fileID=2800000&amp;guid=011c3548c83540a48ac1277faebafea6&amp;type=3#force_30px&apos;); width: 40px; height: 40px;" />
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="round-count-hud" style="background-image: url(&apos;project://database/Assets/UI/Sprites/hud_round_and_disaster.png?fileID=21300000&amp;guid=5812ee9bb2b7c6c4fae4f9e4943c61be&amp;type=3#hud_round_and_disaster&apos;); width: 1079px; height: 101px; -unity-background-scale-mode: scale-to-fit; margin-left: 1%; margin-right: 1%; margin-top: 1%; margin-bottom: 1%; flex-direction: row; align-items: center; justify-content: space-around; -unity-background-image-tint-color: rgb(255, 255, 255);">
-                <ui:Label text="Round 1" display-tooltip-when-elided="true" name="round-count-label" style="font-size: 25%; -unity-font-definition: url(&apos;project://database/Assets/Fonts/Century%20Gothic%20SDF.asset?fileID=11400000&amp;guid=24e562cf7e4ea5044a32db7939fcf0fc&amp;type=2#Century Gothic SDF&apos;);" />
-                <ui:Label text="TSUNAMI" display-tooltip-when-elided="true" name="event-label" style="font-size: 25%; -unity-font-definition: url(&apos;project://database/Assets/Fonts/Century%20Gothic%20SDF.asset?fileID=11400000&amp;guid=24e562cf7e4ea5044a32db7939fcf0fc&amp;type=2#Century Gothic SDF&apos;);" />
+                <ui:VisualElement style="width: 50%; align-items: center; justify-content: space-between;">
+                    <ui:Label text="Round 1" display-tooltip-when-elided="true" name="round-count-label" style="font-size: 25%; -unity-font-definition: url(&apos;project://database/Assets/Fonts/Century%20Gothic%20SDF.asset?fileID=11400000&amp;guid=24e562cf7e4ea5044a32db7939fcf0fc&amp;type=2#Century Gothic SDF&apos;);" />
+                </ui:VisualElement>
+                <ui:VisualElement style="width: 50%; align-items: center; justify-content: space-between;">
+                    <ui:Label text="TSUNAMI" display-tooltip-when-elided="true" name="event-label" style="font-size: 25%; -unity-font-definition: url(&apos;project://database/Assets/Fonts/Century%20Gothic%20SDF.asset?fileID=11400000&amp;guid=24e562cf7e4ea5044a32db7939fcf0fc&amp;type=2#Century Gothic SDF&apos;);" />
+                </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="decisions-view" style="width: 20%; height: 100%; left: 80%; position: absolute;">
