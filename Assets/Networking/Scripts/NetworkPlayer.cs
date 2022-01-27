@@ -77,6 +77,22 @@ public class NetworkPlayer : NetworkBehaviour
         GameObject.FindGameObjectWithTag("UIManager").GetComponent<MenuUIController>().SwitchToPlayerMenu();
     }
 
+    IEnumerator UpdatePlayerDecisionsDelayedClient(Decision[] decisions)
+    {
+        GameObject uiManager = null;
+        PlayerUIController playerUIController = null;
+        do
+        {
+            yield return new WaitForSeconds(.1f);
+            uiManager = GameObject.FindGameObjectWithTag("UIManager");
+            if (uiManager)
+            {
+                playerUIController = uiManager.GetComponent<PlayerUIController>();
+            }
+        } while (playerUIController == null);
+        playerUIController.UpdatePlayerDecisions(new List<Decision>(decisions));
+    }
+
     // Example for ClientRPC we can send to the players
     [ClientRpc]
     public void UpdatePlayerDecisionsClientRpc(Decision[] decisions)
@@ -88,8 +104,16 @@ public class NetworkPlayer : NetworkBehaviour
         }
 
         // Update state on the player
+        // We want to delay (using co-routine) the update in case the UI is not ready yet
         Debug.Log("Decisions updated on player");
-        GameObject.FindGameObjectWithTag("UIManager").GetComponent<PlayerUIController>().UpdatePlayerDecisions(new List<Decision>(decisions));
+        if (GameObject.FindGameObjectWithTag("UIManager"))
+        {
+            GameObject.FindGameObjectWithTag("UIManager").GetComponent<PlayerUIController>().UpdatePlayerDecisions(new List<Decision>(decisions));
+        }
+        else
+        {
+            StartCoroutine("UpdatePlayerDecisionsDelayedClient", decisions);
+        }
     }
 
     [ServerRpc]
