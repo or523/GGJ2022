@@ -36,15 +36,32 @@ public class NetworkPlayer : NetworkBehaviour
     {
         if (!IsLocalPlayer)
         {
-            return;
+           readyValueChangedServerSide(previousValue, newValue);
+           return;
         }
 
+        readyValueChangedClientSide(previousValue, newValue);
+        return;
+    }
+
+    private void readyValueChangedClientSide(bool previousValue, bool newValue)
+    {
         if (previousValue == newValue)
         {
             return;
         }
 
         GameObject.FindGameObjectWithTag("UIManager").GetComponent<PlayerUIController>().UpdatePlayerReadyButton(newValue);
+    }
+
+    private void readyValueChangedServerSide(bool previousValue, bool newValue)
+    {
+        if (previousValue == newValue)
+        {
+            return;
+        }
+
+        GameObject.FindGameObjectWithTag("UIManager").GetComponent<ServerGameUIController>().UpdatePlayerReady(playerResource.Value, newValue);
     }
 
     // Update is called once per frame

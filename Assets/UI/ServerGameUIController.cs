@@ -129,6 +129,35 @@ public class ServerGameUIController : MonoBehaviour
         resourceWorkforceLabel.text = string.Format("{0}", ResourceManagerBehaviour.Instance.m_resources.m_workforce);
     }
 
+    public void UpdatePlayerReady(ResourceType type, bool newValue)
+    {
+        Debug.Log("UpdatePlayerReady(" + type + ", " + newValue + ")");
+        Color bg = newValue ? Color.green : Color.gray;
+        StyleColor style = new StyleColor(bg);
+        switch (type)
+        {
+            case ResourceType.Energy:
+                resourceEnergyLabel.style.backgroundColor    = style;
+                break;
+
+            case ResourceType.Food:
+                resourceFoodLabel.style.backgroundColor      = style;
+                break;
+
+            case ResourceType.Workforce:
+                resourceWorkforceLabel.style.backgroundColor = style;
+                break;
+
+            case ResourceType.Wood:
+                resourceWoodLabel.style.backgroundColor      = style;
+                break;
+
+            case ResourceType.Minerals:
+                resourceMineralsLabel.style.backgroundColor  = style;
+                break;
+        }
+    }
+
     public void UpdateRoundCount()
     {
         roundLabel.text = string.Format("Round {0}", GameManager.Instance.m_turn_counter + 1);
