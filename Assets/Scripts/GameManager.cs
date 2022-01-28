@@ -277,6 +277,9 @@ public class GameManager : MonoBehaviour
     {
         List<Decision> decisions = new List<Decision>() { decision };
         PublishDecisions(decisions);
+
+        // Update server HUD
+        ServerGameUIController.Instance.UpdateServerDecisions(decisions);
     }
 
     public void PublishDecisions(List<Decision> decisions)
