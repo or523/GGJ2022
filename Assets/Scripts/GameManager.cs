@@ -55,6 +55,8 @@ public class GameManager : MonoBehaviour
 
     public bool m_waiting_for_players;
 
+    public float m_game_start_delay = 0f;
+
     void Awake()
     {
         Instance = this;
@@ -109,8 +111,15 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.GameStart:
-                NetworkServer.Instance.UpdateAllPlayersGameStarted();
-                m_gameState = GameState.Produce;
+                if (m_game_start_delay == 0f)
+                {
+                    NetworkServer.Instance.UpdateAllPlayersGameStarted();
+                }
+                else if (m_game_start_delay >= 2.0f)
+                {
+                    m_gameState = GameState.Produce;
+                }
+                m_game_start_delay += Time.deltaTime;
                 break;
 
             case GameState.Produce:
