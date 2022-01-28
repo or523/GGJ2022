@@ -160,6 +160,13 @@ public class PlayerUIController : MonoBehaviour
         m_decisions.Clear();
         m_decisions.AddRange(decisions);
         playerDecisionsListView.RefreshItems();
+
+        // Fix "List is Empty" label
+        if (decisions.Count == 0)
+        {
+            Label emptyLabel = playerDecisionsListView.Q<Label>(null, "unity-list-view__empty-label");
+            emptyLabel.text = "No decisions this turn";
+        }
     }
 
     internal void UpdatePlayerMission(Mission playerMission)
