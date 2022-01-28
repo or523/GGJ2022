@@ -24,11 +24,14 @@ public class BuildingBehaviour : MonoBehaviour, INetworkSerializable
     [HideInInspector]
     public Sprite[]       m_sprites;
 
+    public void Awake()
+    {
+        m_name = gameObject.name;
+    }
+
     // Start is called before the first frame update
     public void Start()
     {
-        m_name = gameObject.name;
-
         m_renderer = GetComponent<SpriteRenderer>();
         m_producer = GetComponent<ConsumerProducerBehaviour>();
 
