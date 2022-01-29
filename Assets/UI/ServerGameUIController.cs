@@ -174,6 +174,14 @@ public class ServerGameUIController : MonoBehaviour
         m_decisions.Clear();
         m_decisions.AddRange(decisions);
         decisionsList.RefreshItems();
+
+        // Fix "List is empty" label
+        if (m_decisions.Count == 0)
+        {
+            Label emptyLabel = decisionsList.Q<Label>(null, "unity-list-view__empty-label");
+            emptyLabel.text = "No decisions this turn";
+            emptyLabel.style.fontSize = 20; // This won't work because shared style-sheets. So just hardcode 20px
+        }
     }
 
     public void UpdateGameEnd(bool won)
