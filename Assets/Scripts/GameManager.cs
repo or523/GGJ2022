@@ -464,11 +464,19 @@ public class GameManager : MonoBehaviour
 
     public bool CanPlayersReady(bool is_ready)
     {
+        // Can't be ready until game finish starting
+        if (m_gameState == GameState.GameStart)
+        {
+            return false;
+        }
+
+        // Can always un-ready
         if (!is_ready)
         {
             return true;
         }
 
+        // Can be ready only if resources are feasible
         return ResourceManagerBehaviour.Instance.m_resources.isFeasible();
     }
 
