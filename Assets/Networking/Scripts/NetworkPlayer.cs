@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 
+using System.Linq;
+
 // This object exists for every player.
 // The server can query this object and run 
 public class NetworkPlayer : NetworkBehaviour
@@ -120,16 +122,19 @@ public class NetworkPlayer : NetworkBehaviour
             return;
         }
 
+        // filter relevant decisions
+        List<Decision> displayable = decisions.Where(d => d.m_resources_needed.GetByType(playerResource.Value) != 0).ToList<Decision>();
+
         // Update state on the player
         // We want to delay (using co-routine) the update in case the UI is not ready yet
         Debug.Log("Decisions updated on player");
         if (GameObject.FindGameObjectWithTag("UIManager"))
         {
-            GameObject.FindGameObjectWithTag("UIManager").GetComponent<PlayerUIController>().UpdatePlayerDecisions(new List<Decision>(decisions));
+            GameObject.FindGameObjectWithTag("UIManager").GetComponent<PlayerUIController>().UpdatePlayerDecisions(displayable);
         }
         else
         {
-            StartCoroutine("UpdatePlayerDecisionsDelayedClient", decisions);
+            StartCoroutine("UpdatePlayerDecisionsDelayedClient", displayable);
         }
     }
 
