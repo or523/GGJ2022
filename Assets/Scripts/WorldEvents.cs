@@ -48,12 +48,12 @@ public abstract class DecisionWorldEvent : WorldEvent
         if (m_was_decision_made)
         {
             ApplyEventDecisionMade();
-            AudioManager.Instance.PlayGoodEventClip();
+            AudioManager.Instance.PlayGoodEventClip(true);
         }
         else
         {
             ApplyEventDecisionNotMade();
-            AudioManager.Instance.PlayBadEventClip();
+            AudioManager.Instance.PlayBadEventClip(true);
         }
     }
 

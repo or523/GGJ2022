@@ -50,11 +50,9 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public IEnumerator PlayGoodEventClip(bool should_restore_ambience=true)
+    private IEnumerator PlayAndRestore(AudioClip clip, bool should_restore_ambience)
     {
-        Debug.Log("PlayGoodEventClip");
-
-        m_audio.clip = m_good_event_clip;
+        m_audio.clip = clip;
         m_audio.loop = false;
         m_audio.Play();
 
@@ -65,19 +63,18 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public IEnumerator PlayBadEventClip(bool should_restore_ambience=true)
+    public void PlayGoodEventClip(bool should_restore_ambience)
+    {
+        Debug.Log("PlayGoodEventClip");
+
+        StartCoroutine(PlayAndRestore(m_good_event_clip, should_restore_ambience));
+    }
+
+    public void PlayBadEventClip(bool should_restore_ambience)
     {
         Debug.Log("PlayBadEventClip");
-        
-        m_audio.clip = m_bad_event_clip;
-        m_audio.loop = false;
-        m_audio.Play();
 
-        if (should_restore_ambience)
-        {
-            yield return new WaitForSeconds(m_audio.clip.length);
-            PlayAmbience();
-        }
+        StartCoroutine(PlayAndRestore(m_bad_event_clip, should_restore_ambience));
     }
 
     // only for clients
