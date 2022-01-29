@@ -52,16 +52,23 @@ public class AudioManager : MonoBehaviour
 
     public IEnumerator PlayGoodEventClip(bool should_restore_ambience=true)
     {
+        Debug.Log("PlayGoodEventClip");
+
         m_audio.clip = m_good_event_clip;
         m_audio.loop = false;
         m_audio.Play();
 
-        yield return new WaitForSeconds(m_audio.clip.length);
-        PlayAmbience();
+        if (should_restore_ambience)
+        {
+            yield return new WaitForSeconds(m_audio.clip.length);
+            PlayAmbience();
+        }
     }
 
     public IEnumerator PlayBadEventClip(bool should_restore_ambience=true)
     {
+        Debug.Log("PlayBadEventClip");
+        
         m_audio.clip = m_bad_event_clip;
         m_audio.loop = false;
         m_audio.Play();

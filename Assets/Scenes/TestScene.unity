@@ -929,9 +929,10 @@ MonoBehaviour:
   max_turns: 12
   m_modifier: {fileID: 0}
   m_remaining_resources: 
-  m_rocket: {fileID: 0}
+  m_rocket: {fileID: 1810926693}
   m_win_mission: {fileID: 0}
   m_waiting_for_players: 0
+  m_game_start_delay: 0
 --- !u!114 &1627268631
 MonoBehaviour:
   m_ObjectHideFlags: 0

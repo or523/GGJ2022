@@ -201,7 +201,7 @@ public class PlayerUIController : MonoBehaviour
     public void UpdatePlayerWon(bool won)
     {
         playerReadyButton.SetEnabled(false);
-        if (won)
+        if (!won)
         {
             playerReadyButton.style.backgroundImage = new StyleBackground(loseSprite);
         }

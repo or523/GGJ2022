@@ -359,6 +359,9 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        // display team result on server
+        ServerGameUIController.Instance.UpdateGameEnd(game_mission_done);
+
         // play global sound depending on team victory
         if (game_mission_done)
         {
@@ -372,7 +375,6 @@ public class GameManager : MonoBehaviour
 
     public void DisplayPlayerResult(GameObject player, bool won)
     {
-        ServerGameUIController.Instance.UpdateGameEnd(won);
         // Display on player controller
         NotifyPlayerResult(player, won);
     }
