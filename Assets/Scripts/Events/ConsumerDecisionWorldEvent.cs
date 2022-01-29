@@ -15,6 +15,6 @@ public class ConsumerDecisionWorldEvent : DecisionWorldEvent
 
     public override void ApplyEventDecisionNotMade()
     {
-        ResourceManagerBehaviour.Instance.UpdateResources(-m_penalty_resources);
+        ResourceManagerBehaviour.Instance.UpdateResources(-m_penalty_resources, true);
     }
 }

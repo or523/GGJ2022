@@ -237,11 +237,15 @@ public class ResourceManagerBehaviour : MonoBehaviour
         
     }
 
-    public void UpdateResources(Resources delta)
+    public void UpdateResources(Resources delta, bool fix_negative=false)
     {
         // update the current resources
         m_resources += delta;
         m_resources.FixFractions();
+        if (fix_negative)
+        {
+            m_resources.FixNegatives();
+        }
         
         // update the totals - only take the positive values of delta
         delta.Fix();
