@@ -22,6 +22,12 @@ public class ServerGameUIController : MonoBehaviour
     public Label resourceWoodLabel;
     public Label resourceWorkforceLabel;
 
+    public VisualElement resourceEnergyReadyIndicator;
+    public VisualElement resourceMineralsReadyIndicator;
+    public VisualElement resourceFoodReadyIndicator;
+    public VisualElement resourceWoodReadyIndicator;
+    public VisualElement resourceWorkforceReadyIndicator;
+
     public ListView decisionsList;
 
     // Layouts
@@ -58,6 +64,11 @@ public class ServerGameUIController : MonoBehaviour
         resourceFoodLabel = root.Q<Label>("food-resource");
         resourceWoodLabel = root.Q<Label>("wood-resource");
         resourceWorkforceLabel = root.Q<Label>("workforce-resource");
+        resourceEnergyReadyIndicator = root.Q<VisualElement>("energy-ready");
+        resourceMineralsReadyIndicator = root.Q<VisualElement>("minerals-ready");
+        resourceFoodReadyIndicator = root.Q<VisualElement>("food-ready");
+        resourceWoodReadyIndicator = root.Q<VisualElement>("wood-ready");
+        resourceWorkforceReadyIndicator = root.Q<VisualElement>("workforce-ready");
         decisionsList = root.Q<ListView>("decisions-list");
 
         // Update upper HUD
@@ -132,28 +143,26 @@ public class ServerGameUIController : MonoBehaviour
     public void UpdatePlayerReady(ResourceType type, bool newValue)
     {
         Debug.Log("UpdatePlayerReady(" + type + ", " + newValue + ")");
-        Color bg = newValue ? Color.green : Color.gray;
-        StyleColor style = new StyleColor(bg);
         switch (type)
         {
             case ResourceType.Energy:
-                resourceEnergyLabel.style.backgroundColor    = style;
+                resourceEnergyReadyIndicator.visible = newValue;
                 break;
 
             case ResourceType.Food:
-                resourceFoodLabel.style.backgroundColor      = style;
+                resourceFoodReadyIndicator.visible = newValue; 
                 break;
 
             case ResourceType.Workforce:
-                resourceWorkforceLabel.style.backgroundColor = style;
+                resourceWorkforceReadyIndicator.visible = newValue; 
                 break;
 
             case ResourceType.Wood:
-                resourceWoodLabel.style.backgroundColor      = style;
+                resourceWoodReadyIndicator.visible = newValue; 
                 break;
 
             case ResourceType.Minerals:
-                resourceMineralsLabel.style.backgroundColor  = style;
+                resourceMineralsReadyIndicator.visible = newValue;
                 break;
         }
     }
