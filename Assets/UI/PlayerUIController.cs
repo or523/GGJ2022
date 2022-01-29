@@ -120,8 +120,7 @@ public class PlayerUIController : MonoBehaviour
         playerDecisionsListView.itemsSource = m_decisions;
         playerDecisionsListView.selectionType = SelectionType.None;
 
-        // Secret mission text
-        playerSecretMissionsLabel.text = NetworkPlayer.LocalInstance.playerMission.ToString();
+        UpdatePlayerMission();
     }
 
     public void PlayerReadyButtonClicked(EventBase tab)
@@ -151,6 +150,12 @@ public class PlayerUIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+    }
+
+    public void UpdatePlayerMission()
+    {
+        // Secret mission text
+        playerSecretMissionsLabel.text = NetworkPlayer.LocalInstance.playerMission.ToString();
     }
 
     public void UpdatePlayerDecisions(List<Decision> decisions)

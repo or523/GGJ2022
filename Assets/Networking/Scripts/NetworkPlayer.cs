@@ -175,6 +175,7 @@ public class NetworkPlayer : NetworkBehaviour
         }
 
         playerMission = mission;
+        GameObject.FindGameObjectWithTag("UIManager").GetComponent<PlayerUIController>().UpdatePlayerMission();
     }
 
     [ClientRpc]

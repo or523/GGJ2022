@@ -63,15 +63,27 @@ public class Mission : ScriptableObject, INetworkSerializable
         switch (missionType)
         {
             case MissionType.AllTimeResourceMission:
-                m_display_string = string.Format("Produce {0} of resource {1} over the game", m_value, m_type);
+                m_display_string = string.Format(
+                    "Produce {0} of resource {1} over the game ({2} so far)",
+                    m_value,
+                    m_type,
+                    ResourceManagerBehaviour.Instance.m_alltime_total.GetByType(m_type));
                 break;
 
             case MissionType.BuildingMission:
-                m_display_string = string.Format("Upgrade {0} to the maximum level", m_building_name);
+                m_display_string = string.Format(
+                    "Upgrade {0} to the maximum level (current level is {1})",
+                    m_building_name,
+                    m_building.m_level);
                 break;
 
             case MissionType.GlobalResourceMission:
-                m_display_string = string.Format("Have {0} of resource {1} at the end of the game", m_value, m_type);
+                m_display_string = string.Format(
+                    "Have {0} of resource {1} at the end of the game ({2} currently)",
+                    m_value,
+                    m_type,
+                    ResourceManagerBehaviour.Instance.m_resources.GetByType(m_type)
+                    );
                 break;
 
             default:

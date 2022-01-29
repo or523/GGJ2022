@@ -131,6 +131,7 @@ public class GameManager : MonoBehaviour
             case GameState.SelectDecisions:
                 // select the available decisions for this turn
                 SelectDecisions();
+                UpdatePlayerMissions();
                 m_gameState = GameState.PlayersMove;
                 break;
 
@@ -270,6 +271,16 @@ public class GameManager : MonoBehaviour
         foreach (KeyValuePair<ulong, GameObject> p in m_players)
         {
             p.Value.GetComponent<NetworkPlayer>().isReady.Value = false;
+        }
+    }
+
+    public void UpdatePlayerMissions()
+    {
+        foreach (KeyValuePair<ulong, GameObject> p in m_players)
+        {
+            GameObject playerObject = p.Value;
+            playerObject.GetComponent<NetworkPlayer>().playerMission.SetDisplayString();
+            playerObject.GetComponent<NetworkPlayer>().UpdatePlayerMissionClientRpc(playerObject.GetComponent<NetworkPlayer>().playerMission);
         }
     }
 
